@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDate"%>
 <html lang="en">
