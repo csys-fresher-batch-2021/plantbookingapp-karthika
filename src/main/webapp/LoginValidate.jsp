@@ -19,6 +19,5 @@ else{
 	response.sendRedirect("Login.jsp?errorMessage="+message);
 }
 %>
-<br><a href="adminLogin.jsp">click to retry again</a>
 </body>
 </html>

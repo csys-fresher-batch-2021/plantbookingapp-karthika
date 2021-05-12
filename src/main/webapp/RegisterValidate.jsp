@@ -23,6 +23,5 @@ else{
 	response.sendRedirect("Register.jsp?errorMessage="+message);
 }
 %>
-<br><a href="adminLogin.jsp">click to retry again</a>
 </body>
 </html>

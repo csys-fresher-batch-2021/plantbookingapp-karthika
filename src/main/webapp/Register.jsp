@@ -23,7 +23,7 @@ if(errorMessage!=null){
 }
 %>
 <br/>
-<button class="btn btn-primary">Login</button><br>
+<button class="btn btn-primary">Register</button><br>
 </form>
 </main>
 </body>
