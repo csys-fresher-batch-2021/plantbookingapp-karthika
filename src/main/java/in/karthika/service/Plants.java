@@ -14,7 +14,7 @@ public class Plants {
 	private static final String PLANT = "Plant";
 	private static final String VEGETABLE = "Vegetable";
 
-	private static List<PlantContainer> plantList = new ArrayList<PlantContainer>();
+	private static List<PlantContainer> plantList = new ArrayList<>();
 
     static {
     	
