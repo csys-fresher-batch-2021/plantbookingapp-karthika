@@ -3,17 +3,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Plants {
+	
 	private Plants() {
 		/**
 		 * constructor
 		 */
 	}
+	
+	/**
+	 * Create constant 
+	 */
 	private static final String FRUIT = "Fruit";
 	private static final String TREE = "Tree";
 	private static final String FLOWER = "Flower";
 	private static final String PLANT = "Plant";
 	private static final String VEGETABLE = "Vegetable";
 
+	/*
+	 * Create array list to store all plats
+	 */
 	private static List<PlantContainer> plantList = new ArrayList<>();
 
     static {
@@ -43,7 +51,10 @@ public class Plants {
     	plantList.add(new PlantContainer("Pepper",30,PLANT,VEGETABLE));
     	
     }
-    
+    /**
+     * This method is used to return plants
+     * @return
+     */
     public static List<PlantContainer> getPlants() {
     	return plantList;
     }
