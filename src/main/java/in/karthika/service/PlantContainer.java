@@ -1,7 +1,7 @@
 package in.karthika.service;
 
 public class PlantContainer {
-
+	
 	private String plantName;
 	private double price;
 	private String plantType;
@@ -13,6 +13,13 @@ public class PlantContainer {
 		this.plantType=type;
 		this.category=category;
 	}
+	
+	public PlantContainer(String name,double amount,String category){
+		this.plantName=name;
+		this.price=amount;
+		this.category=category;
+	}
+	
 	
 	public String getPlantName() {
 		return plantName;

@@ -2,9 +2,9 @@ package in.karthika.service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Plants {
+public class Plant {
 	
-	private Plants() {
+	private Plant() {
 		/**
 		 * constructor
 		 */
@@ -18,6 +18,7 @@ public class Plants {
 	private static final String FLOWER = "Flower";
 	private static final String PLANT = "Plant";
 	private static final String VEGETABLE = "Vegetable";
+	private static final String MEDICINAL = "Medicinal";
 
 	/*
 	 * Create array list to store all plats
@@ -26,7 +27,7 @@ public class Plants {
 
     static {
     	
-    	plantList.add(new PlantContainer("Neem Tree",60,TREE,null));
+    	plantList.add(new PlantContainer("Neem Tree",60,TREE,MEDICINAL));
     	plantList.add(new PlantContainer("Mango Tree",40,TREE,FRUIT));
     	plantList.add(new PlantContainer("Pappaya Tree",45,TREE,FRUIT));
     	plantList.add(new PlantContainer("Guava Tree",70,TREE,FRUIT));
@@ -46,8 +47,9 @@ public class Plants {
     	plantList.add(new PlantContainer("Pea",50,PLANT,VEGETABLE));
     	plantList.add(new PlantContainer("Potato",70,PLANT,VEGETABLE));
     	plantList.add(new PlantContainer("Radish",40,PLANT,VEGETABLE));
-    	plantList.add(new PlantContainer("Mushroom",130,null,VEGETABLE));
+    	plantList.add(new PlantContainer("Mushroom",130,VEGETABLE));
     	plantList.add(new PlantContainer("Capcicum",100,PLANT,VEGETABLE));
+    	plantList.add(new PlantContainer("Tulsi",50,PLANT,MEDICINAL));
     	plantList.add(new PlantContainer("Pepper",30,PLANT,VEGETABLE));
     	
     }
