@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import in.karthika.validate.UserValidate;
 
 /**
- * Servlet implementation class registerServlet
+ * Servlet implementation class registerservlet
  */
-@WebServlet("/registerServlet")
-public class registerServlet extends HttpServlet {
+@WebServlet("/registerservlet")
+public class registerservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		String username = request.getParameter("userName");
 		String mobilenumber = request.getParameter("mobileNumber");
 		String password1 = request.getParameter("password1");

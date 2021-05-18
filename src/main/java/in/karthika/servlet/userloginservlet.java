@@ -8,33 +8,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.karthika.service.AdminService;
-import in.karthika.validate.AdminValidate;
+import in.karthika.service.UserService;
+import in.karthika.validate.UserValidate;
 
 /**
- * Servlet implementation class adminLoginServlet
+ * Servlet implementation class userloginservlet
  */
-@WebServlet("/adminLoginServlet")
-public class adminLoginServlet extends HttpServlet {
+@WebServlet("/userloginservlet")
+public class userloginservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		boolean isValid = false;
 		try {
-			isValid = AdminValidate.validatetAdmin(userId, password);
+			isValid = UserValidate.validatetUser(userId, password);
 			if (isValid) {
-				String username = AdminService.getAdminName(userId);
+				String username = UserService.getUserName(userId);
 				HttpSession session = request.getSession();
 				session.setAttribute("LOGGED_IN_USER", username);
-				session.setAttribute("ROLE", "ADMIN");
-				response.sendRedirect("Adminpage.jsp");
+				session.setAttribute("ROLE", "USER");
+				response.sendRedirect("Plants.jsp");
 			} else {
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}

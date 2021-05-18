@@ -5,6 +5,11 @@ import in.karthika.model.User;
 
 public class UserService {
 	
+	private UserService() {
+		/**
+		 * Constructor
+		 */
+	}
 	/**
 	 * This method is used to store all user details
 	 * 

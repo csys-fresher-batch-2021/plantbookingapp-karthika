@@ -4,6 +4,12 @@ import in.karthika.service.AdminService;
 
 public class AdminValidate {
 	
+	private AdminValidate() {
+		/**
+		 * Constructor
+		 */
+	}
+	
 	public static boolean validatetAdmin(String phoneNumber, String password) {
 		long mobileNo = Long.parseLong(phoneNumber);
 		boolean isValid = false;

@@ -4,6 +4,12 @@ import in.karthika.dao.AdminData;
 import in.karthika.model.Admin;
 
 public class AdminService {
+	
+	private AdminService() {
+		/**
+		 * Constructor
+		 */
+	}
 
 	public static boolean checkAdmin(String userId, String password) {
 		boolean isValid = false;

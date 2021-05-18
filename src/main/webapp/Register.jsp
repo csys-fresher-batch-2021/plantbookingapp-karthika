@@ -7,7 +7,7 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 	<h3>Register</h3>
-		<form action="registerServlet" method="post">
+		<form action="registerservlet" method="post">
 			<table>
 				<caption>Register</caption>
 				<tr>

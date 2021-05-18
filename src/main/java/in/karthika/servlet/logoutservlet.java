@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class logoutServlet
+ * Servlet implementation class logoutservlet
  */
-@WebServlet("/logoutServlet")
-public class logoutServlet extends HttpServlet {
+@WebServlet("/logoutservlet")
+public class logoutservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
