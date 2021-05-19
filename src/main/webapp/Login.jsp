@@ -7,7 +7,7 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<h3>User Login</h3>
-		<form action="userloginservlet" method="post">
+		<form action="UserLoginServlet" method="post">
 			<table>
 				<caption>Login</caption>
 				<tr>
@@ -24,7 +24,7 @@
 			<button type="submit">SUBMIT</button>
 		</form>
 		<h3>Admin Login</h3>
-		<form action="adminloginservlet" method="post">
+		<form action="AdminLoginServlet" method="post">
 			<table>
 				<caption>AdminLogin</caption>
 				<tr>

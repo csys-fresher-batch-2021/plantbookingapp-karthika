@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import in.karthika.validate.UserValidate;
 
 /**
- * Servlet implementation class registerservlet
+ * Servlet implementation class RegisterServlet
  */
-@WebServlet("/registerservlet")
-public class registerservlet extends HttpServlet {
+@WebServlet("/RegisterServlet")
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+ 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		String username = request.getParameter("userName");
 		String mobilenumber = request.getParameter("mobileNumber");
 		String password1 = request.getParameter("password1");
@@ -36,6 +36,7 @@ public class registerservlet extends HttpServlet {
 		} catch (Exception e) {
 			response.sendRedirect("Register.jsp?errorMessage=Please Enter All User Details");
 		}
+
 	}
 
 }

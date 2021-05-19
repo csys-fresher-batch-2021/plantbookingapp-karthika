@@ -12,15 +12,16 @@ import in.karthika.service.AdminService;
 import in.karthika.validate.AdminValidate;
 
 /**
- * Servlet implementation class adminloginservlet
+ * Servlet implementation class AdminLoginServlet
  */
-@WebServlet("/adminloginservlet")
-public class adminloginservlet extends HttpServlet {
+@WebServlet("/AdminLoginServlet")
+public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
@@ -42,7 +43,6 @@ public class adminloginservlet extends HttpServlet {
 		catch (Exception e) {
 			response.sendRedirect("Login.jsp?errorMessage=Please Enter All Details");
 		}
-
 	}
 
 }
