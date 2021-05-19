@@ -1,4 +1,4 @@
-package in.karthika.service;
+package in.karthika.model;
 
 public class Plant {
 	
