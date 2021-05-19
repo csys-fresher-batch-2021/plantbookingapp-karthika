@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
-<%@page import="in.karthika.service.Plant"%>
-<%@page import="in.karthika.service.PlantService"%>
+<%@page import="in.karthika.model.Plant"%>
+<%@page import="in.karthika.dao.PlantData"%>
 <html lang="en">
 <head>
 <title>Plants</title>
@@ -21,10 +21,10 @@
 			</thead>
 			<tbody>
 				<%
-				List<Plant> plantList =PlantService.getPlants() ;
-										int i=0;
-										for (Plant plant : plantList) {
-											i++;
+				List<Plant> plantList =PlantData.getPlants() ;
+												int i=0;
+												for (Plant plant : plantList) {
+													i++;
 				%>
 				<tr>
 					<td><%=i %>
