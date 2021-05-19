@@ -31,7 +31,7 @@ String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
      <% if (loggedInUsername == null){ %>
       <li class="nav-item active">
-        <a class="nav-link" href="login.jsp">Login</a>
+        <a class="nav-link" href="Login.jsp">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Register.jsp">Register</a>
