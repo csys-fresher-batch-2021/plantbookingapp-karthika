@@ -13,24 +13,25 @@ public class UserData {
 		 */
 	}
 	
+
 	/*
 	 * Create array list to store all users
 	 */
 	private static List<User> userList = new ArrayList<>();
 
 	public static void addUser(String userName, long mobileNo, String password) {
-		userList.add(new User(userName,mobileNo,password));
-		
+		userList.add(new User(userName, mobileNo, password));
+
 	}
 	
-    /**
-     * This method is used to return all users
-     * @return
-     */
-    public static List<User> getUsers() {
-    	return userList;
-    }
 
-	
+	/**
+	 * This method is used to return all users
+	 * 
+	 * @return
+	 */
+	public static List<User> getUsers() {
+		return userList;
+	}
 
 }
