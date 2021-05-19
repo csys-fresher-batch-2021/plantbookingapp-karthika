@@ -13,10 +13,10 @@ import in.karthika.service.UserService;
 import in.karthika.validate.UserValidate;
 
 /**
- * Servlet implementation class UserLoginServlet
+ * Servlet implementation class UserloginServlet
  */
-@WebServlet("/UserLoginServlet")
-public class UserLoginServlet extends HttpServlet {
+@WebServlet("/UserloginServlet")
+public class UserloginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

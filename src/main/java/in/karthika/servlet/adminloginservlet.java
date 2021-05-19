@@ -13,10 +13,10 @@ import in.karthika.service.AdminService;
 import in.karthika.validate.AdminValidate;
 
 /**
- * Servlet implementation class AdminLoginServlet
+ * Servlet implementation class AdminloginServlet
  */
-@WebServlet("/AdminLoginServlet")
-public class AdminLoginServlet extends HttpServlet {
+@WebServlet("/AdminloginServlet")
+public class AdminloginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -46,6 +46,7 @@ public class AdminLoginServlet extends HttpServlet {
 		catch (Exception e) {
 			response.sendRedirect("Login.jsp?errorMessage=Please Enter All Details");
 		}
+
 	}
 
 }
