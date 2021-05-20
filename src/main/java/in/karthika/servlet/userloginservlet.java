@@ -26,10 +26,11 @@ public class UserloginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		boolean isValid = false;
 		try {
+			String userId = request.getParameter("userId");
+			String password = request.getParameter("password");
+			boolean isValid = false;
+
 			isValid = UserValidate.validatetUser(userId, password);
 			if (isValid) {
 				String username = UserService.getUserName(userId);

@@ -26,10 +26,11 @@ public class AdminloginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
-		boolean isValid = false;
 		try {
+			String userId = request.getParameter("userId");
+			String password = request.getParameter("password");
+			boolean isValid = false;
+
 			isValid = AdminValidate.validatetAdmin(userId, password);
 			if (isValid) {
 				String username = AdminService.getAdminName(userId);
