@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import in.karthika.validate.UserValidate;
 
-public class Userregistration {
+public class UserRegister {
 
 	@Test
 	public void validTestCase1() {

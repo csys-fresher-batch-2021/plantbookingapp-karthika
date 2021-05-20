@@ -27,7 +27,7 @@ public class UserService {
 				break;
 			}
 		}
-		if(exist==false) {
+		if(!exist) {
 			UserData.addUser(userName, mobileNo, password);
 			isAdd = true;
 		}

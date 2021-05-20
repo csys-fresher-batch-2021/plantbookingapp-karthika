@@ -1,6 +1,12 @@
 package in.karthika.validate;
 
 public class Validate {
+	
+	private Validate() {
+		/**
+		 * constructor
+		 */
+	}
 
 	/**
 	 * This method is used to check the given phone number is valid or not

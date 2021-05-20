@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import in.karthika.validate.UserValidate;
 
-public class Userlogin {
+public class UserLogin {
 	
 	@Before
 	public void register() {
