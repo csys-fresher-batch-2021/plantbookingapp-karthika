@@ -3,17 +3,24 @@ package in.karthika.validate;
 import in.karthika.service.AdminService;
 
 public class AdminValidate {
-	
+
 	private AdminValidate() {
 		/**
 		 * Constructor
 		 */
 	}
-	
+
+	/**
+	 * This method is used to validate the admin
+	 * 
+	 * @param phoneNumber
+	 * @param password
+	 * @return
+	 */
+
 	public static boolean validatetAdmin(String phoneNumber, String password) {
-		long mobileNo = Long.parseLong(phoneNumber);
 		boolean isValid = false;
-		if (phoneNumber.length() == 10 && mobileNo % 1000000000 != 0 && password.trim().length() == 5) {
+		if (Validate.phonenumberValidate(phoneNumber) && Validate.passwordValidate(password)) {
 			isValid = AdminService.checkAdmin(phoneNumber, password);
 		}
 		return isValid;

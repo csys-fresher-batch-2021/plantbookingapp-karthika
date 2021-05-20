@@ -19,12 +19,19 @@ public class UserService {
 	 */
 	public static boolean insertUser(String userName, String phoneNumber, String password) {
 		long mobileNo = Long.parseLong(phoneNumber);
-		boolean isValid = false;
-		if (phoneNumber.length() == 10 && mobileNo % 1000000000 != 0 && password.trim().length() == 5) {
-			UserData.addUser(userName, mobileNo, password);
-			isValid = true;
+		boolean isAdd = false;
+		boolean exist=false;
+		for (User add : UserData.getUsers()) {
+			if (add.getPhoneNumber()==mobileNo) {
+				exist =true;
+				break;
+			}
 		}
-		return isValid;
+		if(exist==false) {
+			UserData.addUser(userName, mobileNo, password);
+			isAdd = true;
+		}
+		return isAdd;
 	}
 
 	/**

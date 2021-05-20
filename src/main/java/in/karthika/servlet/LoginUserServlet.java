@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.karthika.service.AdminService;
-import in.karthika.validate.AdminValidate;
+import in.karthika.service.UserService;
+import in.karthika.validate.UserValidate;
 
 /**
- * Servlet implementation class AdminloginServlet
+ * Servlet implementation class LoginUserServlet
  */
-@WebServlet("/AdminloginServlet")
-public class AdminloginServlet extends HttpServlet {
+@WebServlet("/LoginUserServlet")
+public class LoginUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -31,13 +31,13 @@ public class AdminloginServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			boolean isValid = false;
 
-			isValid = AdminValidate.validatetAdmin(userId, password);
+			isValid = UserValidate.validatetUser(userId, password);
 			if (isValid) {
-				String username = AdminService.getAdminName(userId);
+				String username = UserService.getUserName(userId);
 				HttpSession session = request.getSession();
 				session.setAttribute("LOGGED_IN_USER", username);
-				session.setAttribute("ROLE", "ADMIN");
-				response.sendRedirect("#");
+				session.setAttribute("ROLE", "USER");
+				response.sendRedirect("index.jsp");
 			} else {
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}
@@ -47,7 +47,6 @@ public class AdminloginServlet extends HttpServlet {
 		catch (Exception e) {
 			response.sendRedirect("Login.jsp?errorMessage=Please Enter All Details");
 		}
-
 	}
 
 }
