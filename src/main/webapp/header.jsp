@@ -41,7 +41,7 @@ String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
         <a class="nav-link" href="#">Welcome <%=loggedInUsername %></a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="LogoutServlet" method="get">Logout</a>
+        <a class="nav-link" href="LogoutAllServlet" method="get">Logout</a>
       </li>
       <%} %>
       </ul>
