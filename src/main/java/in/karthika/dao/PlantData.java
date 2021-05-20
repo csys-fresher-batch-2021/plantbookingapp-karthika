@@ -7,7 +7,7 @@ import in.karthika.model.Plant;
 
 public class PlantData {
 
-	public PlantData() {
+	private PlantData() {
 		/**
 		 * constructor
 		 */
@@ -57,9 +57,25 @@ public class PlantData {
 
 	}
 
+	/**
+	 * This method is used to add the plant with type to the stock
+	 * 
+	 * @param plantname
+	 * @param amount
+	 * @param type
+	 * @param category
+	 */
 	public static void plantAdd1(String plantname, double amount, String type, String category) {
 		plantList.add(new Plant(plantname, amount, type, category));
 	}
+
+	/**
+	 * This method is used to add the plant without type to the stock
+	 * 
+	 * @param plantname
+	 * @param price
+	 * @param category
+	 */
 
 	public static void plantAdd2(String plantname, double price, String category) {
 		plantList.add(new Plant(plantname, price, category));
@@ -75,4 +91,3 @@ public class PlantData {
 	}
 
 }
-
