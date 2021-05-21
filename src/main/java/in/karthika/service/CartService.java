@@ -5,6 +5,18 @@ import in.karthika.model.Cart;
 
 public class CartService {
 
+	private CartService() {
+		/**
+		 * Constructor
+		 */
+	}
+
+	/**
+	 * This method is used to add the plants to cart
+	 * 
+	 * @param plantName
+	 * @return
+	 */
 	public static boolean addtoCart(String plantName) {
 		boolean isAdd = false;
 		boolean exist = false;
