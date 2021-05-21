@@ -28,7 +28,7 @@ public class DeletePlantServlet extends HttpServlet {
 		}
 		else {
 			
-			String errorMessage = "Unable to delete book Name";
+			String errorMessage = "Unable to delete Plant";
 			response.sendRedirect("plant.jsp?errorMessage=" + errorMessage);
 		}
 	}

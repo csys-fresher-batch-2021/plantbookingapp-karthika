@@ -39,7 +39,8 @@
 					<%
 					} else if (role.equalsIgnoreCase("USER")) {
 					%>
-					<td><a class="btn btn-secondary" href="#">ADD CART</a></td>
+					<td><a class="btn btn-secondary" 
+					    href="AddCartServlet?plantName=<%=plant.getPlantName()%>">ADD CART</a></td>
 					<%
 					}
 					}
