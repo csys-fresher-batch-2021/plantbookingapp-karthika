@@ -1,5 +1,7 @@
 package in.karthika.service;
 
+import java.util.List;
+
 import in.karthika.dao.PlantData;
 import in.karthika.model.Plant;
 
@@ -53,6 +55,22 @@ public class PlantService {
 			PlantData.plantAdd1(plantname,amount,type,category);
 		}
 		return true;
+	}
+
+
+	public static boolean deletePlant(String plantName) {
+		boolean delete =false;
+		int i=-1;
+		List<Plant> plantList =PlantData.getPlants();
+		for (Plant add : PlantData.getPlants()) {
+			i++;
+			if (add.getPlantName().equalsIgnoreCase(plantName.trim())) {
+				plantList.remove(i);
+				delete=true;
+				break;
+			}
+		}
+		return delete;
 	}
 
 }

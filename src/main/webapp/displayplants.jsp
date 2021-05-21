@@ -32,21 +32,11 @@
 					<td><%=plant.getPlantName()%></td>
 					<td>Rs.<%=plant.getPrice()%></td>
 					<%
-					if (role.equalsIgnoreCase("ADMIN")) {
-					%>
-					<td><a class="btn btn-primary"
-						href="DeletePlantServlet?plantName=<%=plant.getPlantName()%>">DELETE</a></td>
-					<%
-					} else if (role.equalsIgnoreCase("USER")) {
-					%>
-					<td><a class="btn btn-secondary" href="#">ADD CART</a></td>
-					<%
-					}
 					}
 					%>
-				
 			</tbody>
 		</table>
+		<a class="btn btn-primary" href="Register.jsp">Register here to by Plants</a>
 	</main>
 </body>
 </html>
