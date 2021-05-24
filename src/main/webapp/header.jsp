@@ -18,7 +18,14 @@ String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
         <a class="nav-link" href="index.jsp">HOME <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Plants.jsp">PLANTS</a>
+      <% if (loggedInUsername == null){ %>
+        <a class="nav-link" href="displayplants.jsp">PLANTS</a>
+       <%
+       }else{ %>
+    	   <a class="nav-link" href="plant.jsp">PLANTS</a>
+       <%
+       }
+       %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
