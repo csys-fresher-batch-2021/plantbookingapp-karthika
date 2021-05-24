@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="assets/css/fontawesome.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 
+<%
+String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
+%>
 <header>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <a class="navbar-brand" href="#">GRRENKART</a>
@@ -25,15 +28,23 @@
         </div>
       </li>
     </ul>
-     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+     <% if (loggedInUsername == null){ %>
       <li class="nav-item active">
         <a class="nav-link" href="Login.jsp">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Register.jsp">Register</a>
       </li>
+      <%} else { %>
+         <li class="nav-item">
+        <a class="nav-link" href="#">Welcome <%=loggedInUsername %></a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="LogoutAllServlet" method="get">Logout</a>
+      </li>
+      <%} %>
       </ul>
-   
   </div>
 </nav>
 </header>
