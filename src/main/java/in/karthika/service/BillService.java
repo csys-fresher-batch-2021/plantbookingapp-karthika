@@ -8,6 +8,12 @@ import in.karthika.dao.CartData;
 import in.karthika.model.Cart;
 
 public class BillService {
+	
+	private BillService() {
+		/**
+		 * Constructor
+		 */
+	}
 
 	/**
 	 * This method is used to generate the bill details
@@ -17,23 +23,12 @@ public class BillService {
 	 * @return
 	 */
 	public static boolean storeBillDetails(String phoneNumber, String userName) {
-		System.out.println(userName);
 		long mobileNumber = Long.parseLong(phoneNumber);
-		System.out.println(mobileNumber);
 		LocalDate todayDate = LocalDate.now();
-		System.out.println(todayDate);
 		LocalDate deliveryDate = todayDate.plusDays(3);
-		System.out.println(deliveryDate);
 		String orderId = getOrderId(userName, phoneNumber);
-		System.out.println(orderId);
 		List<Cart> cartDetails = CartData.getCart();
-		for (Cart cart : cartDetails) {
-			System.out.println(cart.getPlantName());
-			System.out.println(cart.getPrice());
-			System.out.println(cart.getQuantity());
-		}
 		double totalBill = generateBill(cartDetails);
-		System.out.println(totalBill);
 		BillData.addCart(orderId, userName, mobileNumber, todayDate, deliveryDate, totalBill, cartDetails);
 		return true;
 	}
@@ -60,8 +55,7 @@ public class BillService {
 	 * @return
 	 */
 	private static String getOrderId(String userName, String phoneNumber) {
-		String orderId = phoneNumber + userName;
-		return orderId;
+		return phoneNumber + userName;
 	}
 
 }

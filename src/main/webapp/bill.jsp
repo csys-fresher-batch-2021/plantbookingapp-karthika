@@ -13,7 +13,7 @@
 	<main class="container-fluid">
 		<h3>TOTAL BILL</h3>
 		<table class="table table-bordered">
-			<caption>Cart</caption>
+			<caption>BILL</caption>
 			<tbody>
 				<%
 				String phoneNumber = (String) session.getAttribute("PHONE_NUMBER");
@@ -24,27 +24,27 @@
 					String mobileNumber=String.valueOf(totalBill.getMobileNumber());
 					if(phoneNumber.equalsIgnoreCase(mobileNumber)){%>
 				<tr>
-					<th>ORDER ID</th>
+					<th scope="col">ORDER ID</th>
 					<td><%=totalBill.getOrderId()%></td>
 				</tr>
 				<tr>
-					<th>CUSTOMER NAME</th>
+					<th scope="col">CUSTOMER NAME</th>
 					<td><%=totalBill.getCustomerName()%></td>
 				</tr>
 				<tr>
-					<th>PHONE NUMBER</th>
+					<th scope="col">PHONE NUMBER</th>
 					<td><%=totalBill.getMobileNumber()%></td>
 				</tr>
 				<tr>
-					<th>ORDERED DATE</th>
+					<th scope="col">ORDERED DATE</th>
 					<td><%=totalBill.getOrderDate()%></td>
 				</tr>
 				<tr>
-					<th>DELIVERY DATE</th>
+					<th scope="col">DELIVERY DATE</th>
 					<td><%=totalBill.getDeliveryDate()%></td>
 				</tr>
 				<tr>
-					<th>TOTAL BILL</th>
+					<th scope="col">TOTAL BILL</th>
 					<td><%=totalBill.getBill()%></td>
 				</tr>
 				<%}} %>
