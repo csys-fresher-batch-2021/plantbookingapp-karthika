@@ -42,6 +42,7 @@
 			</table>
 			<button type="submit">SUBMIT</button>
 		</form>
+		 <a class="btn btn-secondary" href="Adminpage.jsp">BACK</a>
 	</main>
 </body>
 </html>
