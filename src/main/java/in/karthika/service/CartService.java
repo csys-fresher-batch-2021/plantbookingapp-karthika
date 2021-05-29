@@ -6,7 +6,7 @@ import in.karthika.dao.CartData;
 import in.karthika.dao.PlantData;
 import in.karthika.model.Cart;
 import in.karthika.model.Plant;
-import in.karthika.validate.CartValidate;
+import in.karthika.validate.PlantValidate;
 
 public class CartService {
 
@@ -59,17 +59,24 @@ public class CartService {
 
 	}
 
+	/**
+	 * This method is used to add the quantity to cart
+	 * 
+	 * @param qnty
+	 * @param plantName
+	 * @return
+	 */
 	public static boolean addQauantity(String qnty, String plantName) {
-		int quantity=Integer.parseInt(qnty);
-		List<Cart> cartPlant=CartData.getCart();
-		boolean isAdded=false;
-		boolean check=CartValidate.checkQuantity(quantity);
+		int quantity = Integer.parseInt(qnty);
+		List<Cart> cartPlant = CartData.getCart();
+		boolean isAdded = false;
+		boolean check = PlantValidate.checkQuantity(quantity);
 		for (Cart cart : CartData.getCart()) {
 			if (cart.getPlantName().equalsIgnoreCase(plantName.trim()) && check) {
-				double price=cart.getPrice();
+				double price = cart.getPrice();
 				cartPlant.remove(cart);
-				CartData.addCart(plantName, price,quantity);
-				isAdded=true;
+				CartData.addCart(plantName, price, quantity);
+				isAdded = true;
 				break;
 			}
 		}
