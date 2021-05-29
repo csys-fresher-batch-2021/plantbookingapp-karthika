@@ -89,12 +89,19 @@ public class PlantData {
 	public static List<Plant> getPlants() {
 		return plantList;
 	}
-	
+
+	/*
+	 * This array list is used to store the filtered plants
+	 */
 	private static List<Plant> filterPlants = new ArrayList<>();
-	
+
+	/**
+	 * This method is used to return all filter plants
+	 * 
+	 * @return
+	 */
 	public static List<Plant> getFilterPlants() {
 		return filterPlants;
 	}
-	
 
 }
