@@ -46,7 +46,7 @@ public class LoginUserServlet extends HttpServlet {
 		}
 
 		catch (Exception e) {
-			response.sendRedirect("Login.jsp?errorMessage=Please Enter All Details");
+			response.sendRedirect("Login.jsp?errorMessage=Unexpected Error");
 		}
 	}
 

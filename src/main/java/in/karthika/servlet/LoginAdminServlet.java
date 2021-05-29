@@ -20,10 +20,12 @@ public class LoginAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
@@ -43,9 +45,8 @@ public class LoginAdminServlet extends HttpServlet {
 		}
 
 		catch (Exception e) {
-			response.sendRedirect("Login.jsp?errorMessage=Please Enter All Details");
+			response.sendRedirect("Login.jsp?errorMessage=Unexpected Error");
 		}
-
 
 	}
 

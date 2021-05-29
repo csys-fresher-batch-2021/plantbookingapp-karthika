@@ -25,6 +25,7 @@ public class LogoutAllServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.removeAttribute("LOGGED_IN_USER");
 		session.removeAttribute("ROLE");
+		session.removeAttribute("PHONE_NUMBER");
 		response.sendRedirect("Login.jsp");
 	}
 

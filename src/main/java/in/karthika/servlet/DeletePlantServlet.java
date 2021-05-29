@@ -17,19 +17,24 @@ public class DeletePlantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String plantName = request.getParameter("plantName");
-		boolean isDeleted = PlantService.deletePlant(plantName);
-		if(isDeleted) {
-			response.sendRedirect("plant.jsp");
-		}
-		else {
-			
-			String errorMessage = "Unable to delete Plant";
-			response.sendRedirect("plant.jsp?errorMessage=" + errorMessage);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			String plantName = request.getParameter("plantName");
+			boolean isDeleted = PlantService.deletePlant(plantName);
+			if (isDeleted) {
+				response.sendRedirect("plant.jsp");
+			} else {
+
+				String errorMessage = "Unable to delete Plant";
+				response.sendRedirect("plant.jsp?errorMessage=" + errorMessage);
+			}
+		} catch (Exception e) {
+			response.sendRedirect("plant.jsp?errorMessage=Unexpected error");
 		}
 	}
 
