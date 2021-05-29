@@ -18,15 +18,28 @@ public class CartData {
 	 */
 	private static List<Cart> cartPlants = new ArrayList<>();
 
+	/**
+	 * This method is used to store plants which is in user cart
+	 * 
+	 * @param plantName
+	 * @param price
+	 */
+
 	public static void addCart(String plantName, double price) {
 		cartPlants.add(new Cart(plantName, price));
 	}
 
+	/**
+	 * This method is used to store the plants which is in user cart with quantity
+	 * 
+	 * @param plantName
+	 * @param price
+	 * @param quantity
+	 */
 	public static void addCart(String plantName, double price, int quantity) {
-		cartPlants.add(new Cart(plantName, price,quantity));
-		
-	}
+		cartPlants.add(new Cart(plantName, price, quantity));
 
+	}
 
 	/**
 	 * This method is used to return cart details
@@ -37,6 +50,4 @@ public class CartData {
 		return cartPlants;
 	}
 
-
-	
 }
