@@ -89,5 +89,12 @@ public class PlantData {
 	public static List<Plant> getPlants() {
 		return plantList;
 	}
+	
+	private static List<Plant> filterPlants = new ArrayList<>();
+	
+	public static List<Plant> getFilterPlants() {
+		return filterPlants;
+	}
+	
 
 }

@@ -33,7 +33,7 @@ public class Validate {
 	 */
 	public static boolean passwordValidate(String password) {
 		boolean valid = false;
-		if (password.trim().length() == 5) {
+		if (password.trim().length() == 5 ) {
 			valid = true;
 		}
 		return valid;
@@ -48,7 +48,7 @@ public class Validate {
 	 */
 	public static boolean nameValidate(String name) {
 		boolean valid = false;
-		String regex = "[a-zA-Z_ ]+\\.?";
+		String regex = "[a-zA-Z ]+\\.?";
 		if (name.matches(regex) && name.length() <= 20) {
 			valid = true;
 		}

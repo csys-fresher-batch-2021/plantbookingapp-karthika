@@ -35,7 +35,7 @@ public class LoginAdminServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("LOGGED_IN_USER", username);
 				session.setAttribute("ROLE", "ADMIN");
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("Adminpage.jsp");
 			} else {
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}

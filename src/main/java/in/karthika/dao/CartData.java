@@ -19,8 +19,14 @@ public class CartData {
 	private static List<Cart> cartPlants = new ArrayList<>();
 
 	public static void addCart(String plantName, double price) {
-		cartPlants.add(new Cart(plantName,price));
+		cartPlants.add(new Cart(plantName, price));
 	}
+
+	public static void addCart(String plantName, double price, int quantity) {
+		cartPlants.add(new Cart(plantName, price,quantity));
+		
+	}
+
 
 	/**
 	 * This method is used to return cart details
@@ -31,4 +37,6 @@ public class CartData {
 		return cartPlants;
 	}
 
+
+	
 }
