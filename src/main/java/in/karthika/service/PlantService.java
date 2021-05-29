@@ -4,6 +4,7 @@ import java.util.List;
 
 import in.karthika.dao.PlantData;
 import in.karthika.model.Plant;
+import in.karthika.validate.PlantValidate;
 
 public class PlantService {
 	private PlantService() {
@@ -48,9 +49,10 @@ public class PlantService {
 	 * @return
 	 */
 	private static boolean addPlants(String plantname, double price, String type, String category) {
-		if (type.trim().equalsIgnoreCase("others")) {
+		boolean isCheck = PlantValidate.chackPrice(price);
+		if (type.trim().equalsIgnoreCase("others") && isCheck) {
 			PlantData.plantAdd2(plantname, price, category);
-		} else {
+		} else if (isCheck) {
 			PlantData.plantAdd1(plantname, price, type, category);
 		}
 		return true;
@@ -88,19 +90,16 @@ public class PlantService {
 		List<Plant> filterPlant = PlantData.getFilterPlants();
 		filterPlant.removeAll(filterPlant);
 		for (Plant plant : PlantData.getPlants()) {
-			if (plant.getPlantType() != null && plant.getPlantType().equalsIgnoreCase(filter)
-					&& !plantExsist(plant.getPlantName())) {
+			if (plant.getPlantType() != null && plant.getPlantType().equalsIgnoreCase(filter)) {
 				filterPlant.add(plant);
 				isAdd = true;
-			} else if (plant.getCategory() != null && plant.getCategory().equalsIgnoreCase(filter)
-					&& !plantExsist(plant.getPlantName())) {
+			} else if (plant.getCategory() != null && plant.getCategory().equalsIgnoreCase(filter)) {
 				filterPlant.add(plant);
 				isAdd = true;
-			} else if (filter.trim().equals("1") && plant.getPrice() <= 100 && !plantExsist(plant.getPlantName())) {
+			} else if (filter.trim().equals("1") && plant.getPrice() <= 100) {
 				filterPlant.add(plant);
 				isAdd = true;
-			} else if (filter.trim().equals("2") && plant.getPrice() > 100 && plant.getPrice() <= 200
-					&& !plantExsist(plant.getPlantName())) {
+			} else if (filter.trim().equals("2") && plant.getPrice() > 100 && plant.getPrice() <= 200) {
 				filterPlant.add(plant);
 				isAdd = true;
 			}
@@ -109,14 +108,4 @@ public class PlantService {
 		return isAdd;
 	}
 
-	
-	public static boolean plantExsist(String plantName) {
-		boolean isExsist = false;
-		for (Plant plant : PlantData.getFilterPlants()) {
-			if (plant.getPlantName().equalsIgnoreCase(plantName)) {
-				isExsist = true;
-			}
-		}
-		return isExsist;
-	}
 }
