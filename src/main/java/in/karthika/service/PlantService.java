@@ -5,6 +5,7 @@ import java.util.List;
 import in.karthika.dao.PlantData;
 import in.karthika.model.Plant;
 import in.karthika.validate.PlantValidate;
+import in.karthika.validate.Validate;
 
 public class PlantService {
 	private PlantService() {
@@ -49,10 +50,11 @@ public class PlantService {
 	 * @return
 	 */
 	private static boolean addPlants(String plantname, double price, String type, String category) {
-		boolean isCheck = PlantValidate.chackPrice(price);
-		if (type.trim().equalsIgnoreCase("others") && isCheck) {
+		boolean priceCheck = PlantValidate.chackPrice(price);
+		boolean nameCheck =Validate.nameValidate(plantname);
+		if (type.trim().equalsIgnoreCase("others") && priceCheck && nameCheck) {
 			PlantData.plantAdd2(plantname, price, category);
-		} else if (isCheck) {
+		} else if (priceCheck && nameCheck) {
 			PlantData.plantAdd1(plantname, price, type, category);
 		}
 		return true;

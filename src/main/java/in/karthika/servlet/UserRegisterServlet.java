@@ -37,7 +37,7 @@ public class UserRegisterServlet extends HttpServlet {
 				response.sendRedirect("Register.jsp?errorMessage=Invalid Login Credentials");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("Register.jsp?errorMessage=Please Enter All User Details");
+			response.sendRedirect("Register.jsp?errorMessage=Unexpected Error");
 		}
 
 	}

@@ -18,10 +18,12 @@ public class PlantAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String plantname = request.getParameter("plantname");
 		String price = request.getParameter("price");
 		String type = request.getParameter("type");
@@ -32,10 +34,10 @@ public class PlantAddServlet extends HttpServlet {
 			if (isValid) {
 				response.sendRedirect("plant.jsp");
 			} else {
-				response.sendRedirect("AddPlants.jsp?errorMessage=Give Correct Details");
+				response.sendRedirect("addPlant.jsp?errorMessage=Give Correct Details");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("AddPlants.jsp?errorMessage=Please Enter All  Details");
+			response.sendRedirect("addPlant.jsp?errorMessage=Unexpected Error");
 		}
 	}
 
