@@ -11,6 +11,7 @@
 	<main class="container-fluid">
 		<form action="PasswordChangeServlet">
 			<table>
+			<caption>Password Change</caption>
 				<tr>
 					<th scope="col">MOBILE NUMBER</th>
 					<td><input type="number" id="phoneNumber" name="phoneNumber"

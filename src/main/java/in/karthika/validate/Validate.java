@@ -48,7 +48,7 @@ public class Validate {
 	 */
 	public static boolean nameValidate(String name) {
 		boolean valid = false;
-		String regex = "[a-zA-Z ]+\\.?";;
+		String regex = "[a-zA-Z ]+\\.?";
 		if (name.matches(regex) && name.length() <= 20) {
 			valid = true;
 		}
