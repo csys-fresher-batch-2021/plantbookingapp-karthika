@@ -13,7 +13,7 @@
 				<tr>
 					<th scope="col">MOBILE NUMBER</th>
 					<td><input type="number" name="userId" id="userId"
-						placeholder="Enter your phone number" required></td>
+						placeholder="Enter your phone number" required autofocus></td>
 				</tr>
 				<tr>
 					<th scope="col">PASSWORD</th>
@@ -21,6 +21,7 @@
 						placeholder="Enter password" required></td>
 				</tr>
 			</table>
+			<a href="passwordChange.jsp">Forget Password</a>
 			<button type="submit">SUBMIT</button>
 		</form>
 		<h3>Admin Login</h3>

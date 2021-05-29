@@ -35,9 +35,10 @@ public class LoginUserServlet extends HttpServlet {
 			if (isValid) {
 				String username = UserService.getUserName(userId);
 				HttpSession session = request.getSession();
-				session.setAttribute("LOGGED_IN_USER", username);
+				session.setAttribute("LOGGED_IN_USER", username); 
+				session.setAttribute("PHONE_NUMBER", userId); 
 				session.setAttribute("ROLE", "USER");
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("plant.jsp");
 			} else {
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}

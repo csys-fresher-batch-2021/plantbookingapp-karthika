@@ -12,7 +12,6 @@ public class UserData {
 		 * constructor
 		 */
 	}
-	
 
 	/*
 	 * Create array list to store all users
@@ -23,7 +22,6 @@ public class UserData {
 		userList.add(new User(userName, mobileNo, password));
 
 	}
-	
 
 	/**
 	 * This method is used to return all users

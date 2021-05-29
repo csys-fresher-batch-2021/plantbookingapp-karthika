@@ -32,16 +32,20 @@
 					<td><%=plant.getPlantName()%></td>
 					<td>Rs.<%=plant.getPrice()%></td>
 					<%
-					if (role.equalsIgnoreCase("ADMIN")) {
+					if (role != null) {
+						if (role.equalsIgnoreCase("ADMIN")) {
 					%>
 					<td><a class="btn btn-primary"
 						href="DeletePlantServlet?plantName=<%=plant.getPlantName()%>">DELETE</a></td>
 					<%
 					} else if (role.equalsIgnoreCase("USER")) {
 					%>
-					<td><a class="btn btn-secondary" 
-					    href="AddCartServlet?plantName=<%=plant.getPlantName()%>">ADD CART</a></td>
+
+					<td><a class="btn btn-primary"
+						href="AddCartServlet?plantName=<%=plant.getPlantName()%>">ADD
+							TO CART</a></td>
 					<%
+					}
 					}
 					}
 					%>

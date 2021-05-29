@@ -1,7 +1,10 @@
 package in.karthika.service;
 
+import java.util.List;
+
 import in.karthika.dao.UserData;
 import in.karthika.model.User;
+import in.karthika.validate.Validate;
 
 public class UserService {
 
@@ -20,18 +23,30 @@ public class UserService {
 	public static boolean insertUser(String userName, String phoneNumber, String password) {
 		long mobileNo = Long.parseLong(phoneNumber);
 		boolean isAdd = false;
-		boolean exist=false;
-		for (User add : UserData.getUsers()) {
-			if (add.getPhoneNumber()==mobileNo) {
-				exist =true;
-				break;
-			}
-		}
-		if(!exist) {
+		boolean exist = false;
+		exist = isExist(mobileNo);
+		if (!exist) {
 			UserData.addUser(userName, mobileNo, password);
 			isAdd = true;
 		}
 		return isAdd;
+	}
+
+	/**
+	 * This method is used to find the mobile number is already exist or not
+	 * 
+	 * @param mobileNumber
+	 * @return
+	 */
+	public static boolean isExist(long mobileNumber) {
+		boolean exist = false;
+		for (User add : UserData.getUsers()) {
+			if (add.getPhoneNumber() == mobileNumber) {
+				exist = true;
+				break;
+			}
+		}
+		return exist;
 	}
 
 	/**
@@ -72,6 +87,48 @@ public class UserService {
 			}
 		}
 		return name;
+	}
+
+	/**
+	 * This method is used check the user who want to change the password is already
+	 * exist or not
+	 * 
+	 * @param phoneNumber
+	 * @param password1
+	 * @param password2
+	 * @return
+	 */
+
+	public static boolean changepassword(String phoneNumber, String password1, String password2) {
+		long mobileNo = Long.parseLong(phoneNumber);
+		boolean change = false;
+		if (password1.equals(password2) && Validate.passwordValidate(password1) && isExist(mobileNo)) {
+			change = change(mobileNo, password1);
+
+		}
+		return change;
+	}
+
+	/**
+	 * This method is used to change the user's password
+	 * 
+	 * @param mobileNo
+	 * @param password1
+	 * @return
+	 */
+	public static boolean change(long mobileNo, String password1) {
+		List<User> userList = UserData.getUsers();
+		boolean change = false;
+		for (User user : UserData.getUsers()) {
+			if (user.getPhoneNumber() == mobileNo) {
+				String name = user.getName();
+				userList.remove(user);
+				UserData.addUser(name, mobileNo, password1);
+				change = true;
+				break;
+			}
+		}
+		return change;
 	}
 
 }

@@ -21,8 +21,8 @@ public class AddCartServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String plantName = request.getParameter("plantName");
+	    try {
+		String plantName =  request.getParameter("plantName");
 		boolean isAddtoCart = CartService.addtoCart(plantName);
 		if(isAddtoCart) {
 			response.sendRedirect("displayCart.jsp");
@@ -32,6 +32,10 @@ public class AddCartServlet extends HttpServlet {
 			String errorMessage = "Unable to add to cart";
 			response.sendRedirect("plant.jsp?errorMessage=" + errorMessage);
 		}
+	    }
+	    catch (Exception e) {
+			response.sendRedirect("Register.jsp?errorMessage=Unable to add ");
+	    }
 		
 	}
 

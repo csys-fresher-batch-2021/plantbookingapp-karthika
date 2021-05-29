@@ -4,16 +4,20 @@ public class Cart {
 
 	private String plantName;
 	private double price;
-	private double quantity;
+	private int quantity=0;
+
+	public Cart(String name, double amount,int quantity) {
+		this.plantName = name;
+		this.price = amount;
+		this.quantity = quantity;
+	}
+
 
 	public Cart(String name, double amount) {
 		this.plantName = name;
 		this.price = amount;
 	}
 
-	public Cart(double quantity) {
-		this.quantity = quantity;
-	}
 
 	public String getPlantName() {
 		return plantName;
@@ -23,7 +27,7 @@ public class Cart {
 		return price;
 	}
 
-	public double getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
