@@ -83,4 +83,19 @@ public class CartService {
 		return isAdded;
 	}
 
+	public static boolean deletePlant(String plantName) {
+		boolean delete = false;
+		int i = -1;
+		List<Cart> cartList = CartData.getCart();
+		for (Cart plant : CartData.getCart()) {
+			i++;
+			if (plant.getPlantName().equalsIgnoreCase(plantName.trim())) {
+				cartList.remove(i);
+				delete = true;
+				break;
+			}
+		}
+		return delete;
+	}
+
 }

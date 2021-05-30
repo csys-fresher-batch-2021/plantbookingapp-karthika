@@ -24,7 +24,7 @@
 				<%
 				List<Cart> cartList = CartData.getCart();
 				int i = 0;
-				int j=0;
+				int j = 0;
 				for (Cart cart : cartList) {
 					i++;
 				%>
@@ -33,7 +33,8 @@
 					<td><%=cart.getPlantName()%></td>
 					<td>Rs.<%=cart.getPrice()%></td>
 					<%
-					if (cart.getQuantity() > 0) {j++;
+					if (cart.getQuantity() > 0) {
+						j++;
 					%>
 					<td><%=cart.getQuantity()%></td>
 					<%
@@ -42,25 +43,38 @@
 						<form action="AddQuantity">
 							<input type="text" id="quantity" name="quantity"
 								placeholder="Quantity" required autofocus>
-							<button class="btn btn-primary" type="submit">CONFIRM QUANTITY</button>
-							<%
-							session.setAttribute("plantName", cart.getPlantName());
-							%>
-						</form> <%
- }
- }
- %>
+							<button class="btn btn-primary" type="submit">CONFIRM</button>
 					</td>
+					<td><a class="btn btn-primary"
+						href="DeleteCartPlantServlet?plantName=<%=cart.getPlantName()%>">DELETE</a></td>
+					<%
+					session.setAttribute("plantName", cart.getPlantName());
+					%>
+					</form>
+					<%
+					}
+
+					}
+					%>
+
+
 				</tr>
 			</tbody>
 		</table>
-		<%if(cartList.size()==j){%>
-		<a class="btn btn-primary" href="plant.jsp">Want To Buy More Plants</a>
-		<a class="btn btn-primary" href="PlaceOrderServlet">Place Order</a>
-		<%}else{ %>
+		<%
+		if (cartList.size() == j) {
+		%>
+		<a class="btn btn-primary" href="plant.jsp">Want To Buy More
+			Plants</a> <a class="btn btn-primary" href="PlaceOrderServlet">Place
+			Order</a>
+		<%
+		} else {
+		%>
 		<h3>Please Enter Quantity</h3>
-	
-	<%} %>
+
+		<%
+		}
+		%>
 	</main>
 </body>
 </html>
