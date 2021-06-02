@@ -9,7 +9,7 @@ import in.karthika.util.NameValidate;
 import in.karthika.util.NumberValidate;
 
 public class PlantDetailsValidate {
-	
+
 	private PlantDetailsValidate() {
 		/*
 		 * Constructor
@@ -29,7 +29,7 @@ public class PlantDetailsValidate {
 	 * @throws InvalidNumberException
 	 */
 	public static boolean checkPlant(String plantname, String price) throws InvalidDetailsException,
-			EmptyStringException, InvalideNameException, NumberCannotBeNegativeException, InvalidNumberException {
+			EmptyStringException, InvalideNameException, NumberCannotBeNegativeException {
 		boolean isValid = false;
 		boolean isNameValid = NameValidate.validateName(plantname);
 		boolean isPositive = NumberValidate.positiveNumberValidate(price);

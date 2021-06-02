@@ -26,7 +26,7 @@ public class AdminData {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static List<Admin> adminDetails() throws Exception, SQLException {
+	public static List<Admin> adminDetails() throws Exception {
 
 		List<Admin> adminList = new ArrayList<>();
 		Connection con = null;
@@ -45,7 +45,7 @@ public class AdminData {
 				String password = rs.getString("Password");
 				adminList.add(new Admin(userName, contactNumber, password));
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Invalid User");
 		} finally {

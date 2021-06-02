@@ -27,7 +27,7 @@ public class CartService {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static boolean addtoCart(String plantName) throws SQLException, Exception {
+	public static boolean addtoCart(String plantName) throws Exception {
 		boolean isAdd = false;
 		boolean exist = false;
 		double price = 0;
@@ -73,8 +73,7 @@ public class CartService {
 	 * @throws InvalidNumberException
 	 * @throws NumberCannotBeNegativeException
 	 */
-	public static boolean addQauantity(String qnty, String plantName)
-			throws NumberCannotBeNegativeException, InvalidNumberException {
+	public static boolean addQauantity(String qnty, String plantName) throws NumberCannotBeNegativeException {
 		int quantity = Integer.parseInt(qnty);
 		List<Cart> cartPlant = CartData.getCart();
 		boolean isAdded = false;

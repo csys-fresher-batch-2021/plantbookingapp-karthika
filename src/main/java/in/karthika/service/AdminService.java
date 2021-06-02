@@ -24,7 +24,7 @@ public class AdminService {
 	 * @throws SQLException
 	 */
 
-	public static boolean checkAdmin(String userId, String password) throws SQLException, Exception {
+	public static boolean checkAdmin(String userId, String password) throws  Exception {
 		boolean isValid = false;
 		long mobileNo = Long.parseLong(userId);
 		boolean validate = LoginValidate.checkLogin(userId, password);
@@ -47,7 +47,7 @@ public class AdminService {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static String getAdminName(String userId) throws SQLException, Exception {
+	public static String getAdminName(String userId) throws  Exception {
 		String name = null;
 		long mobileNo = Long.parseLong(userId);
 		for (Admin admin : AdminData.adminDetails()) {

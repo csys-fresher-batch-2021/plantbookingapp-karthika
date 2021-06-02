@@ -29,7 +29,6 @@ public class UserRegisterServlet extends HttpServlet {
 			String mobilenumber = request.getParameter("mobileNumber");
 			String password1 = request.getParameter("password1");
 			String password2 = request.getParameter("password2");
-			System.out.println("I am in sevlet"+username+mobilenumber+password1+password2);
 			boolean isValid  = UserService.insertUser(username, mobilenumber,password1, password2);
 			if (isValid) {
 				response.sendRedirect("Login.jsp?Registered Successful");

@@ -19,10 +19,10 @@ public class NameValidate {
 	 * @throws EmptyStringException
 	 * @throws InvalideNameException
 	 */
-	public static boolean validateName(String Name) throws EmptyStringException, InvalideNameException {
+	public static boolean validateName(String name) throws EmptyStringException, InvalideNameException {
 		boolean isValid = false;
-		if (!Name.trim().isEmpty()) {
-			isValid = checkName(Name);
+		if (!name.trim().isEmpty()) {
+			isValid = checkName(name);
 		} else {
 			throw new EmptyStringException("Name field is empty");
 		}

@@ -40,8 +40,7 @@ public class AddQuantity extends HttpServlet {
 				String errorMessage = "Unable to add to cart";
 				response.sendRedirect("displayCart.jsp?errorMessage=" + errorMessage);
 			}
-		} catch (NumberCannotBeNegativeException | InvalidNumberException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

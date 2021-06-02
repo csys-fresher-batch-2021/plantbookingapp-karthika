@@ -30,7 +30,7 @@ public class PlantData {
 	 * @throws SQLException
 	 */
 
-	public static List<Plant> plantDetails() throws Exception, SQLException {
+	public static List<Plant> plantDetails() throws Exception {
 
 		List<Plant> plantList = new ArrayList<>();
 		Connection con = null;
@@ -72,7 +72,7 @@ public class PlantData {
 	 * @throws CannotAddException
 	 */
 	
-	public static boolean save(Plant plant) throws Exception, SQLException, CannotAddException {
+	public static boolean save(Plant plant) throws Exception {
 	
 		boolean isAdd = false;
 		Connection con = null;
@@ -104,7 +104,7 @@ public class PlantData {
 		return isAdd;
 	}
 
-	public static boolean deletePlant(String plantName) throws Exception, CannotDeleteDetails {
+	public static boolean deletePlant(String plantName) throws Exception {
 
 		boolean isDelete = false;
 		Connection connection = null;

@@ -29,29 +29,28 @@ public class UserData {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	
-	public static boolean save(User user) throws Exception, SQLException, CannotAddException {
-		
-		boolean isAdd=false;
+
+	public static boolean save(User user) throws Exception {
+
+		boolean isAdd = false;
 		Connection con = null;
 		PreparedStatement pst = null;
-		
+
 		try {
 			con = Connectionutil.getConnection();
-			
+
 			String sql = "insert into userlist(User_Id,User_Name,Contact_Number,Password) values ( ?,?,?,? )";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, user.getUserId());
 			pst.setString(2, user.getName());
 			pst.setLong(3, user.getPhoneNumber());
 			pst.setString(4, user.getPassWord());
-		
+
 			int rows = pst.executeUpdate();
-			
-			if(rows==1) {
-				isAdd=true;
-			}
-			else{
+
+			if (rows == 1) {
+				isAdd = true;
+			} else {
 				throw new CannotAddException("Cannot Add Details");
 			}
 		} catch (SQLException e) {
@@ -60,7 +59,7 @@ public class UserData {
 		} finally {
 			Connectionutil.close(pst, con);
 		}
-		
+
 		return isAdd;
 	}
 
@@ -71,20 +70,19 @@ public class UserData {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static List<User> userDetails()
-			throws Exception, SQLException, ClassNotFoundException, CannotGetCredentialException {
-		
+	public static List<User> userDetails() throws Exception {
+
 		List<User> userList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pst = null;
-		
+
 		try {
 			con = Connectionutil.getConnection();
-			
+
 			String url = "select * from userList";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);
-		
+
 			while (rs.next()) {
 				String userId = rs.getString("User_Id");
 				String userName = rs.getString("User_Name");
@@ -98,12 +96,13 @@ public class UserData {
 		} finally {
 			Connectionutil.close(pst, con);
 		}
-		
+
 		return userList;
 	}
-	
+
 	/**
 	 * This method is used to change the password of the user
+	 * 
 	 * @param phoneNumber
 	 * @param newPassword
 	 * @return

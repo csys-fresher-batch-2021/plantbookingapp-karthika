@@ -26,8 +26,7 @@ public class PlantService {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static boolean addPlant(String plantname, String price, String type, String category)
-			throws SQLException, Exception {
+	public static boolean addPlant(String plantname, String price, String type, String category) throws Exception {
 		boolean isValid = PlantDetailsValidate.checkPlant(plantname, price);
 		boolean isAdd = false;
 		boolean exist = isPlantExist(plantname);
@@ -48,7 +47,7 @@ public class PlantService {
 	 * @throws Exception
 	 */
 
-	public static boolean isPlantExist(String plantName) throws SQLException, Exception {
+	public static boolean isPlantExist(String plantName) throws Exception {
 		boolean exist = false;
 		for (Plant add : PlantData.plantDetails()) {
 			if (add.getPlantName().equalsIgnoreCase(plantName.trim())) {
@@ -67,7 +66,7 @@ public class PlantService {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static boolean deletePlant(String plantName) throws SQLException, Exception {
+	public static boolean deletePlant(String plantName) throws Exception {
 		return PlantData.deletePlant(plantName.trim());
 
 	}
@@ -80,8 +79,8 @@ public class PlantService {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	
-	public static boolean filterPlants(String filter) throws SQLException, Exception {
+
+	public static boolean filterPlants(String filter) throws Exception {
 		boolean isAdd = false;
 		List<Plant> filterPlant = PlantData.getFilterPlants();
 		filterPlant.removeAll(filterPlant);

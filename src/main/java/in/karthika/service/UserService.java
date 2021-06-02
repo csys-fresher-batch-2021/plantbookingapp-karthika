@@ -32,7 +32,7 @@ public class UserService {
 	 * @throws Exception
 	 */
 	public static boolean insertUser(String userName, String phoneNumber, String password1, String password2)
-			throws ClassNotFoundException, InvalidDetailsException, Exception {
+			throws Exception {
 		boolean isValid = UserValidate.ValidaterRegisterUser(userName, password1, password2, phoneNumber);
 		boolean isMatch = isEqual(password1, password2);
 		boolean isAdd = false;
@@ -59,8 +59,7 @@ public class UserService {
 	 * @throws Exception
 	 */
 
-	public static boolean addUser(String userId, String userName, long mobileNo, String password)
-			throws SQLException, Exception {
+	public static boolean addUser(String userId, String userName, long mobileNo, String password) throws Exception {
 		User user = new User(userId, userName, mobileNo, password);
 		boolean isAdd = UserData.save(user);
 		return isAdd;
@@ -106,8 +105,7 @@ public class UserService {
 	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
-	public static boolean isExist(long mobileNumber)
-			throws ClassNotFoundException, CannotGetCredentialException, Exception {
+	public static boolean isExist(long mobileNumber) throws Exception {
 		boolean exist = false;
 		for (User add : UserData.userDetails()) {
 			if (add.getPhoneNumber() == mobileNumber) {
@@ -128,7 +126,7 @@ public class UserService {
 	 * @throws Exception
 	 * @throws SQLException
 	 */
-	public static boolean checkUser(String userId, String password) throws SQLException, Exception {
+	public static boolean checkUser(String userId, String password) throws Exception {
 		boolean isValid = false;
 		long mobileNo = Long.parseLong(userId);
 		boolean validate = LoginValidate.checkLogin(userId, password);
@@ -152,7 +150,7 @@ public class UserService {
 	 * @throws SQLException
 	 */
 
-	public static String getUserName(String phoneNumber) throws SQLException, Exception {
+	public static String getUserName(String phoneNumber) throws Exception {
 		String name = null;
 		long mobileNo = Long.parseLong(phoneNumber);
 		for (User user : UserData.userDetails()) {
@@ -175,8 +173,7 @@ public class UserService {
 	 * @throws SQLException
 	 */
 
-	public static boolean changepassword(String phoneNumber, String password1, String password2)
-			throws SQLException, Exception, InvalidDetailsException {
+	public static boolean changepassword(String phoneNumber, String password1, String password2) throws Exception {
 		long mobileNo = Long.parseLong(phoneNumber);
 		boolean change = false;
 		if (isEqual(password1, password2) && PasswordValidate.validatePassword(password1) && isExist(mobileNo)) {
