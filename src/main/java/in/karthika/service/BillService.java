@@ -55,7 +55,8 @@ public class BillService {
 	 * @return
 	 */
 	private static String getOrderId(String userName, String phoneNumber) {
-		return phoneNumber + userName;
+		String name = userName.substring(0, 4);
+		return name + phoneNumber;
 	}
 
 }

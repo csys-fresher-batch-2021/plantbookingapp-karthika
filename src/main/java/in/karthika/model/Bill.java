@@ -47,72 +47,101 @@ public class Bill {
 	}
 
 	/**
-	 * This method is used to return orderId
-	 * 
-	 * @return
+	 * @return the orderId
 	 */
 	public String getOrderId() {
 		return orderId;
 	}
 
 	/**
-	 * This method is used to Customer's name
-	 * 
-	 * @return
+	 * @param orderId the orderId to set
+	 */
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
+	/**
+	 * @return the customerName
 	 */
 	public String getCustomerName() {
 		return customerName;
 	}
 
 	/**
-	 * This method is used to return customer's mobile number
-	 * 
-	 * @return
+	 * @param customerName the customerName to set
+	 */
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	/**
+	 * @return the mobileNumber
 	 */
 	public long getMobileNumber() {
 		return mobileNumber;
-
 	}
 
 	/**
-	 * This method is used to return order date
-	 * 
-	 * @return
+	 * @param mobileNumber the mobileNumber to set
 	 */
-	public LocalDate getOrderDate() {
-		return orderData;
-
+	public void setMobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
 	/**
-	 * This method is used to get the delivery date
-	 * 
-	 * @return
+	 * @return the orderData
+	 */
+	public LocalDate getOrderData() {
+		return orderData;
+	}
+
+	/**
+	 * @param orderData the orderData to set
+	 */
+	public void setOrderData(LocalDate orderData) {
+		this.orderData = orderData;
+	}
+
+	/**
+	 * @return the deliveryDate
 	 */
 	public LocalDate getDeliveryDate() {
 		return deliveryDate;
-
 	}
 
 	/**
-	 * This method is used to get the bill
-	 * 
-	 * @return
+	 * @param deliveryDate the deliveryDate to set
 	 */
+	public void setDeliveryDate(LocalDate deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
 
-	public double getBill() {
+	/**
+	 * @return the totalBill
+	 */
+	public double getTotalBill() {
 		return totalBill;
-
 	}
 
 	/**
-	 * This method is used to return all items which is ordered by the user
-	 * 
-	 * @return
+	 * @param totalBill the totalBill to set
 	 */
-	public List<Cart> getOrderPlants() {
-		return orderedPlantDetails;
+	public void setTotalBill(double totalBill) {
+		this.totalBill = totalBill;
+	}
 
+	/**
+	 * @return the orderedPlantDetails
+	 */
+	public List<Cart> getOrderedPlantDetails() {
+		return orderedPlantDetails;
+	}
+
+	/**
+	 * @param orderedPlantDetails the orderedPlantDetails to set
+	 */
+	public void setOrderedPlantDetails(List<Cart> orderedPlantDetails) {
+		this.orderedPlantDetails = orderedPlantDetails;
 	}
 
 	@Override

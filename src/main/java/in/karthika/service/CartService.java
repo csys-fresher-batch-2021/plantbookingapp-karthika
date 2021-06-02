@@ -1,12 +1,15 @@
 package in.karthika.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import in.karthika.dao.CartData;
 import in.karthika.dao.PlantData;
+import in.karthika.exceptions.InvalidNumberException;
+import in.karthika.exceptions.NumberCannotBeNegativeException;
 import in.karthika.model.Cart;
 import in.karthika.model.Plant;
-import in.karthika.validate.PlantValidate;
+import in.karthika.util.NumberValidate;
 
 public class CartService {
 
@@ -21,12 +24,14 @@ public class CartService {
 	 * 
 	 * @param plantName
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static boolean addtoCart(String plantName) {
+	public static boolean addtoCart(String plantName) throws Exception {
 		boolean isAdd = false;
 		boolean exist = false;
 		double price = 0;
-		for (Plant add : PlantData.getPlants()) {
+		for (Plant add : PlantData.plantDetails()) {
 			if (add.getPlantName().equalsIgnoreCase(plantName.trim())) {
 				price = add.getPrice();
 				break;
@@ -65,23 +70,33 @@ public class CartService {
 	 * @param qnty
 	 * @param plantName
 	 * @return
+	 * @throws InvalidNumberException
+	 * @throws NumberCannotBeNegativeException
 	 */
-	public static boolean addQauantity(String qnty, String plantName) {
+	public static boolean addQauantity(String qnty, String plantName) throws NumberCannotBeNegativeException {
 		int quantity = Integer.parseInt(qnty);
 		List<Cart> cartPlant = CartData.getCart();
 		boolean isAdded = false;
-		boolean check = PlantValidate.checkQuantity(quantity);
+		boolean check = NumberValidate.positiveNumberValidate(qnty);
 		for (Cart cart : CartData.getCart()) {
 			if (cart.getPlantName().equalsIgnoreCase(plantName.trim()) && check) {
 				double price = cart.getPrice();
 				cartPlant.remove(cart);
-				CartData.addCart(plantName, price, quantity);
+				double priceOfAplan = price * quantity;
+				CartData.addCart(plantName, price, quantity, priceOfAplan);
 				isAdded = true;
 				break;
 			}
 		}
 		return isAdded;
 	}
+
+	/**
+	 * This method is used to delete the plant in the cart
+	 * 
+	 * @param plantName
+	 * @return
+	 */
 
 	public static boolean deletePlant(String plantName) {
 		boolean delete = false;

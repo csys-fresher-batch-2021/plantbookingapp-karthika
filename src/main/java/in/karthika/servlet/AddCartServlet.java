@@ -27,7 +27,7 @@ public class AddCartServlet extends HttpServlet {
 			String plantName = request.getParameter("plantName");
 			boolean isAddtoCart = CartService.addtoCart(plantName);
 			if (isAddtoCart) {
-				response.sendRedirect("displayCart.jsp");
+				response.sendRedirect("displayCart.jsp?Successfully added to the cart");
 			} else {
 
 				String errorMessage = "Unable to add to cart";

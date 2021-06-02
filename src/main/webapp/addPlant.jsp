@@ -27,7 +27,6 @@
 					<td><select name="type" id="type">
 							<option value="tree">Tree</option>
 							<option value="plant">Plant</option>
-							<option value="others">Others</option>
 					</select></td>
 				</tr>
 				<tr>
@@ -42,6 +41,7 @@
 			</table>
 			<button type="submit">SUBMIT</button>
 		</form>
+		 <a class="btn btn-secondary" href="Adminpage.jsp">BACK</a>
 	</main>
 </body>
 </html>

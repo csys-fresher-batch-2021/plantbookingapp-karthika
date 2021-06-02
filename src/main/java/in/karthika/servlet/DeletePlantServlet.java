@@ -27,7 +27,7 @@ public class DeletePlantServlet extends HttpServlet {
 			String plantName = request.getParameter("plantName");
 			boolean isDeleted = PlantService.deletePlant(plantName);
 			if (isDeleted) {
-				response.sendRedirect("plant.jsp");
+				response.sendRedirect("plant.jsp?Successfully deleted");
 			} else {
 
 				String errorMessage = "Unable to delete Plant";

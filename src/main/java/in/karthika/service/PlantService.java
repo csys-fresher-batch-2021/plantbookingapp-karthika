@@ -1,11 +1,11 @@
 package in.karthika.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import in.karthika.dao.PlantData;
 import in.karthika.model.Plant;
-import in.karthika.validate.PlantValidate;
-import in.karthika.validate.Validate;
+import in.karthika.validate.PlantDetailsValidate;
 
 public class PlantService {
 	private PlantService() {
@@ -23,41 +23,39 @@ public class PlantService {
 	 * @param type
 	 * @param category
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static boolean checkPlant(String plantname, String price, String type, String category) {
+	public static boolean addPlant(String plantname, String price, String type, String category) throws Exception {
+		boolean isValid = PlantDetailsValidate.checkPlant(plantname, price);
 		boolean isAdd = false;
-		boolean exist = false;
-		double amount = Double.parseDouble(price);
-		for (Plant add : PlantData.getPlants()) {
-			if (add.getPlantName().equalsIgnoreCase(plantname.trim())) {
-				exist = true;
-				break;
-			}
-		}
-		if (!exist && amount > 0) {
-			isAdd = addPlants(plantname, amount, type, category);
+		boolean exist = isPlantExist(plantname);
+		double cost = Double.parseDouble(price);
+		if (!exist && isValid) {
+			Plant plant = new Plant(plantname, cost, type, category);
+			isAdd = PlantData.save(plant);
 		}
 		return isAdd;
 	}
 
 	/**
-	 * This method is used to add the plant to stock
+	 * This method is used to check whether the plant is exist in the list or not
 	 * 
-	 * @param plantname
-	 * @param price
-	 * @param type
-	 * @param category
+	 * @param plantName
 	 * @return
+	 * @throws SQLException
+	 * @throws Exception
 	 */
-	private static boolean addPlants(String plantname, double price, String type, String category) {
-		boolean priceCheck = PlantValidate.chackPrice(price);
-		boolean nameCheck =Validate.nameValidate(plantname);
-		if (type.trim().equalsIgnoreCase("others") && priceCheck && nameCheck) {
-			PlantData.plantAdd2(plantname, price, category);
-		} else if (priceCheck && nameCheck) {
-			PlantData.plantAdd1(plantname, price, type, category);
+
+	public static boolean isPlantExist(String plantName) throws Exception {
+		boolean exist = false;
+		for (Plant add : PlantData.plantDetails()) {
+			if (add.getPlantName().equalsIgnoreCase(plantName.trim())) {
+				exist = true;
+				break;
+			}
 		}
-		return true;
+		return exist;
 	}
 
 	/**
@@ -65,20 +63,12 @@ public class PlantService {
 	 * 
 	 * @param plantName
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static boolean deletePlant(String plantName) {
-		boolean delete = false;
-		int i = -1;
-		List<Plant> plantList = PlantData.getPlants();
-		for (Plant add : PlantData.getPlants()) {
-			i++;
-			if (add.getPlantName().equalsIgnoreCase(plantName.trim())) {
-				plantList.remove(i);
-				delete = true;
-				break;
-			}
-		}
-		return delete;
+	public static boolean deletePlant(String plantName) throws Exception {
+		return PlantData.deletePlant(plantName.trim());
+
 	}
 
 	/**
@@ -86,12 +76,15 @@ public class PlantService {
 	 * 
 	 * @param filter
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static boolean filterPlants(String filter) {
+
+	public static boolean filterPlants(String filter) throws Exception {
 		boolean isAdd = false;
 		List<Plant> filterPlant = PlantData.getFilterPlants();
 		filterPlant.removeAll(filterPlant);
-		for (Plant plant : PlantData.getPlants()) {
+		for (Plant plant : PlantData.plantDetails()) {
 			if (plant.getPlantType() != null && plant.getPlantType().equalsIgnoreCase(filter)) {
 				filterPlant.add(plant);
 				isAdd = true;

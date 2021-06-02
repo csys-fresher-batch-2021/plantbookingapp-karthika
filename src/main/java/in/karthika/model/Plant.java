@@ -8,7 +8,7 @@ public class Plant {
 	private String category;
 
 	/**
-	 * Constructor with 4 parameters
+	 * Constructor 
 	 * 
 	 * @param name
 	 * @param amount
@@ -23,52 +23,59 @@ public class Plant {
 	}
 
 	/**
-	 * Constructor with 3 parameters
-	 * 
-	 * @param name
-	 * @param amount
-	 * @param category
-	 */
-	public Plant(String name, double amount, String category) {
-		this.plantName = name;
-		this.price = amount;
-		this.category = category;
-	}
-
-	/**
-	 * This method is used to return plant's name
-	 * 
-	 * @return
+	 * @return the plantName
 	 */
 	public String getPlantName() {
 		return plantName;
 	}
 
 	/**
-	 * This method is used to return plant's price
-	 * 
-	 * @return
+	 * @param plantName the plantName to set
+	 */
+	public void setPlantName(String plantName) {
+		this.plantName = plantName;
+	}
+
+	/**
+	 * @return the price
 	 */
 	public double getPrice() {
 		return price;
 	}
 
 	/**
-	 * This method is used to return plant's type
-	 * 
-	 * @return
+	 * @param price the price to set
+	 */
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	/**
+	 * @return the plantType
 	 */
 	public String getPlantType() {
 		return plantType;
 	}
 
 	/**
-	 * This method is used to return plant's category
-	 * 
-	 * @return
+	 * @param plantType the plantType to set
+	 */
+	public void setPlantType(String plantType) {
+		this.plantType = plantType;
+	}
+
+	/**
+	 * @return the category
 	 */
 	public String getCategory() {
 		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class Filterplants extends HttpServlet {
 			String filter = request.getParameter("filter");
 			boolean isFilter = PlantService.filterPlants(filter);
 			if (isFilter) {
-				response.sendRedirect("filterPlants.jsp");
+				response.sendRedirect("filterPlants.jsp?Successfully deleted");
 			} else {
 				response.sendRedirect("plant.jsp?errorMessage=Can't filter");
 			}

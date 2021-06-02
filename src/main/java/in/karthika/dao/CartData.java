@@ -23,6 +23,8 @@ public class CartData {
 	 * 
 	 * @param plantName
 	 * @param price
+	 * @param priceOfAplan
+	 * @param quantity
 	 */
 
 	public static void addCart(String plantName, double price) {
@@ -36,8 +38,8 @@ public class CartData {
 	 * @param price
 	 * @param quantity
 	 */
-	public static void addCart(String plantName, double price, int quantity) {
-		cartPlants.add(new Cart(plantName, price, quantity));
+	public static void addCart(String plantName, double price, int quantity, double priceOfAplan) {
+		cartPlants.add(new Cart(plantName, price, quantity, priceOfAplan));
 
 	}
 

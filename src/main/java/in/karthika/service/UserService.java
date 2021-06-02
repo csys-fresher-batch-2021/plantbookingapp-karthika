@@ -1,10 +1,15 @@
 package in.karthika.service;
 
-import java.util.List;
+import java.sql.SQLException;
 
 import in.karthika.dao.UserData;
+import in.karthika.exceptions.CannotGetCredentialException;
+import in.karthika.exceptions.InvalidDetailsException;
+import in.karthika.exceptions.PasswordMismatchException;
 import in.karthika.model.User;
-import in.karthika.validate.Validate;
+import in.karthika.util.PasswordValidate;
+import in.karthika.validate.LoginValidate;
+import in.karthika.validate.UserValidate;
 
 public class UserService {
 
@@ -15,21 +20,80 @@ public class UserService {
 	}
 
 	/**
-	 * This method is used to store all user details
+	 * This method is used to validate and insert the user
 	 * 
-	 * @param mobileNo
-	 * @param password
+	 * @param userName
+	 * @param phoneNumber
+	 * @param password1
+	 * @param password2
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws InvalidDetailsException
+	 * @throws Exception
 	 */
-	public static boolean insertUser(String userName, String phoneNumber, String password) {
-		long mobileNo = Long.parseLong(phoneNumber);
+	public static boolean insertUser(String userName, String phoneNumber, String password1, String password2)
+			throws Exception {
+		boolean isValid = UserValidate.ValidaterRegisterUser(userName, password1, password2, phoneNumber);
+		boolean isMatch = isEqual(password1, password2);
 		boolean isAdd = false;
-		boolean exist = false;
-		exist = isExist(mobileNo);
-		if (!exist) {
-			UserData.addUser(userName, mobileNo, password);
-			isAdd = true;
+		long mobileNo = Long.parseLong(phoneNumber);
+		String userId = generateUserId(phoneNumber, userName);
+		boolean exist = isExist(mobileNo);
+		if (!exist && isValid && isMatch) {
+			isAdd = addUser(userId, userName, mobileNo, password1);
+		} else {
+			throw new InvalidDetailsException("Invalid Details");
 		}
 		return isAdd;
+	}
+
+	/**
+	 * This method is used to add the user
+	 * 
+	 * @param userId
+	 * @param userName
+	 * @param mobileNo
+	 * @param password
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+
+	public static boolean addUser(String userId, String userName, long mobileNo, String password) throws Exception {
+		User user = new User(userId, userName, mobileNo, password);
+		boolean isAdd = UserData.save(user);
+		return isAdd;
+	}
+
+	/**
+	 * This method is used to find the password and confirm password is equal or not
+	 * 
+	 * @param password1
+	 * @param password2
+	 * @return
+	 * @throws PasswordMismatchException
+	 */
+	public static boolean isEqual(String password1, String password2) throws PasswordMismatchException {
+		boolean isMatch = false;
+		if (password1.equals(password2)) {
+			isMatch = true;
+		} else {
+			throw new PasswordMismatchException("Confirm password is not matched");
+		}
+		return isMatch;
+	}
+
+	/**
+	 * This method is used generate the user Id
+	 * 
+	 * @param phoneNumber
+	 * @param userName
+	 * @return
+	 */
+
+	public static String generateUserId(String phoneNumber, String userName) {
+		String name = userName.substring(0, 4);
+		return name + phoneNumber;
 	}
 
 	/**
@@ -37,10 +101,13 @@ public class UserService {
 	 * 
 	 * @param mobileNumber
 	 * @return
+	 * @throws CannotGetCredentialException
+	 * @throws ClassNotFoundException
+	 * @throws Exception
 	 */
-	public static boolean isExist(long mobileNumber) {
+	public static boolean isExist(long mobileNumber) throws Exception {
 		boolean exist = false;
-		for (User add : UserData.getUsers()) {
+		for (User add : UserData.userDetails()) {
 			if (add.getPhoneNumber() == mobileNumber) {
 				exist = true;
 				break;
@@ -56,12 +123,15 @@ public class UserService {
 	 * @param userId
 	 * @param password
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static boolean checkUser(String userId, String password) {
+	public static boolean checkUser(String userId, String password) throws Exception {
 		boolean isValid = false;
 		long mobileNo = Long.parseLong(userId);
-		for (User user : UserData.getUsers()) {
-			if (user.getPhoneNumber() == mobileNo) {
+		boolean validate = LoginValidate.checkLogin(userId, password);
+		for (User user : UserData.userDetails()) {
+			if (user.getPhoneNumber() == mobileNo && validate) {
 				if (user.getPassWord().equals(password)) {
 					isValid = true;
 				}
@@ -76,11 +146,14 @@ public class UserService {
 	 * 
 	 * @param userId
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static String getUserName(String userId) {
+
+	public static String getUserName(String phoneNumber) throws Exception {
 		String name = null;
-		long mobileNo = Long.parseLong(userId);
-		for (User user : UserData.getUsers()) {
+		long mobileNo = Long.parseLong(phoneNumber);
+		for (User user : UserData.userDetails()) {
 			if (user.getPhoneNumber() == mobileNo) {
 				name = user.getName();
 				break;
@@ -90,43 +163,24 @@ public class UserService {
 	}
 
 	/**
-	 * This method is used check the user who want to change the password is already
-	 * exist or not
+	 * This method is used to change the password
 	 * 
 	 * @param phoneNumber
 	 * @param password1
 	 * @param password2
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
 
-	public static boolean changepassword(String phoneNumber, String password1, String password2) {
+	public static boolean changepassword(String phoneNumber, String password1, String password2) throws Exception {
 		long mobileNo = Long.parseLong(phoneNumber);
 		boolean change = false;
-		if (password1.equals(password2) && Validate.passwordValidate(password1) && isExist(mobileNo)) {
-			change = change(mobileNo, password1);
+		if (isEqual(password1, password2) && PasswordValidate.validatePassword(password1) && isExist(mobileNo)) {
+			change = UserData.changePassword(phoneNumber, password1);
 
-		}
-		return change;
-	}
-
-	/**
-	 * This method is used to change the user's password
-	 * 
-	 * @param mobileNo
-	 * @param password1
-	 * @return
-	 */
-	public static boolean change(long mobileNo, String password1) {
-		List<User> userList = UserData.getUsers();
-		boolean change = false;
-		for (User user : UserData.getUsers()) {
-			if (user.getPhoneNumber() == mobileNo) {
-				String name = user.getName();
-				userList.remove(user);
-				UserData.addUser(name, mobileNo, password1);
-				change = true;
-				break;
-			}
+		} else {
+			throw new InvalidDetailsException("Invalid Detailsss");
 		}
 		return change;
 	}

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import in.karthika.service.UserService;
-import in.karthika.validate.UserValidate;
 
 /**
  * Servlet implementation class LoginUserServlet
@@ -29,16 +28,14 @@ public class LoginUserServlet extends HttpServlet {
 		try {
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
-			boolean isValid = false;
-
-			isValid = UserValidate.validatetUser(userId, password);
+			boolean isValid = UserService.checkUser(userId, password);
 			if (isValid) {
 				String username = UserService.getUserName(userId);
 				HttpSession session = request.getSession();
 				session.setAttribute("LOGGED_IN_USER", username); 
 				session.setAttribute("PHONE_NUMBER", userId); 
 				session.setAttribute("ROLE", "USER");
-				response.sendRedirect("plant.jsp");
+				response.sendRedirect("plant.jsp?Login Successful");
 			} else {
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}

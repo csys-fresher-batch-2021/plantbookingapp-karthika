@@ -27,11 +27,12 @@ String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter By Category</a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="Filterplants?filter=plant">Plant</a>
-          <a class="dropdown-item" href="Filterplants?filter=tree">Tree</a>
-          <a class="dropdown-item" href="Filterplants?filter=flower">Flower</a>
-          <a class="dropdown-item" href="Filterplants?filter=vegetable">Vegetable</a>
-          <a class="dropdown-item" href="Filterplants?filter=fruit">Fruit</a>
+          <a class="dropdown-item" href="Filterplants?filter=PLANT">Plant</a>
+          <a class="dropdown-item" href="Filterplants?filter=TREE">Tree</a>
+          <a class="dropdown-item" href="Filterplants?filter=FLOWER">Flower</a>
+          <a class="dropdown-item" href="Filterplants?filter=VEGETABLE">Vegetable</a>
+          <a class="dropdown-item" href="Filterplants?filter=FRUIT">Fruit</a>
+          <a class="dropdown-item" href="Filterplants?filter=MEDICINAL">Medicinal</a>
         </div>
       </li>
       <li class="nav-item dropdown">

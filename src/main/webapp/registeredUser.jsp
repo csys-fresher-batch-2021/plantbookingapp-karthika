@@ -16,6 +16,7 @@
 				<thead>
 					<tr>
 						<th scope="col">S.NO</th>
+						<th scope="col">USER ID</th>
 						<th scope="col">USER NAME</th>
 						<th scope="col">MOBILE NUMBER</th>
 						<th scope="col">PASSWORD</th>
@@ -23,13 +24,14 @@
 				</thead>
 				<tbody>
 					<%
-					List<User> userList = UserData.getUsers();
+					List<User> userList = UserData.userDetails();
 					int i = 0;
 					for (User user : userList) {
 						i++;
 					%>
 					<tr>
 						<td><%=i%></td>
+						<td><%=user.getUserId()%></td>
 						<td><%=user.getName()%></td>
 						<td><%=user.getPhoneNumber()%></td>
 						<td><%=user.getPassWord()%></td>

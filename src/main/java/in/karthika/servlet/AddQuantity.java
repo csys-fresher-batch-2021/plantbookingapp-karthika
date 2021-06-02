@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import in.karthika.exceptions.InvalidNumberException;
+import in.karthika.exceptions.NumberCannotBeNegativeException;
 import in.karthika.service.CartService;
 
 /**
@@ -24,17 +26,24 @@ public class AddQuantity extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String quantity = request.getParameter("quantity");
-		HttpSession session = request.getSession();
-		String plantName = (String) session.getAttribute("plantName");
-		boolean isAdd = CartService.addQauantity(quantity, plantName);
-		if (isAdd) {
-			response.sendRedirect("displayCart.jsp");
-		} else {
+		try {
+			String quantity = request.getParameter("quantity");
+			HttpSession session = request.getSession();
+			String plantName = (String) session.getAttribute("plantName");
+			boolean isAdd = false;
 
-			String errorMessage = "Unable to add to cart";
-			response.sendRedirect("displayCart.jsp?errorMessage=" + errorMessage);
+			isAdd = CartService.addQauantity(quantity, plantName);
+			if (isAdd) {
+				response.sendRedirect("displayCart.jsp?Quantity added successfully added");
+			} else {
+
+				String errorMessage = "Unable to add to cart";
+				response.sendRedirect("displayCart.jsp?errorMessage=" + errorMessage);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 }

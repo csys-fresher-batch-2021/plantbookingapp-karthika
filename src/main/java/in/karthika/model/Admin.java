@@ -6,6 +6,7 @@ public class Admin {
 	private long adminPhoneNumber;
 	private String adminPassWord;
 
+	
 	/**
 	 * Constructor
 	 * 
@@ -19,33 +20,61 @@ public class Admin {
 		this.adminPhoneNumber = phoneNumber;
 		this.adminPassWord = passWord;
 	}
+	
+	
 
 	/**
-	 * This method is used to return the name of the Admin
-	 * 
-	 * @return
+	 * @return the adminName
 	 */
-	public String getName() {
+	public String getAdminName() {
 		return adminName;
 	}
 
+
+
 	/**
-	 * This method is used to return the contact number of the Admin
-	 * 
-	 * @return
+	 * @param adminName the adminName to set
 	 */
-	public long getPhoneNumber() {
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+
+
+	/**
+	 * @return the adminPhoneNumber
+	 */
+	public long getAdminPhoneNumber() {
 		return adminPhoneNumber;
 	}
 
+
+
 	/**
-	 * This method is used to return the password
-	 * 
-	 * @return
+	 * @param adminPhoneNumber the adminPhoneNumber to set
 	 */
-	public String getPassWord() {
+	public void setAdminPhoneNumber(long adminPhoneNumber) {
+		this.adminPhoneNumber = adminPhoneNumber;
+	}
+
+
+
+	/**
+	 * @return the adminPassWord
+	 */
+	public String getAdminPassWord() {
 		return adminPassWord;
 	}
+
+
+
+	/**
+	 * @param adminPassWord the adminPassWord to set
+	 */
+	public void setAdminPassWord(String adminPassWord) {
+		this.adminPassWord = adminPassWord;
+	}
+
 
 	@Override
 	public String toString() {
