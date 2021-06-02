@@ -18,6 +18,7 @@
 					<th scope="col">PLANT NAME</th>
 					<th scope="col">PRICE (Rs)</th>
 					<th scope="col">QUANTITY</th>
+					<th scope="col">PRICE FOR A PLANT</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,6 +38,7 @@
 						j++;
 					%>
 					<td><%=cart.getQuantity()%></td>
+					<td><%=cart.getAmountForAplant()%></td>
 					<%
 					} else {
 					%><td>

@@ -22,7 +22,7 @@
 			<tbody>
 				<%
 				String role = (String) session.getAttribute("ROLE");
-				List<Plant> plantList = PlantData.getPlants();
+				List<Plant> plantList = PlantData.plantDetails();
 				int i = 0;
 				for (Plant plant : plantList) {
 					i++;

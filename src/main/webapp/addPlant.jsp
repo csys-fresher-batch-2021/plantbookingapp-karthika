@@ -27,7 +27,6 @@
 					<td><select name="type" id="type">
 							<option value="tree">Tree</option>
 							<option value="plant">Plant</option>
-							<option value="others">Others</option>
 					</select></td>
 				</tr>
 				<tr>

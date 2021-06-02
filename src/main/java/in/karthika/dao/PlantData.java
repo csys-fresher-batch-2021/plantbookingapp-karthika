@@ -1,9 +1,18 @@
 package in.karthika.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.karthika.exceptions.CannotAddException;
+import in.karthika.exceptions.CannotDeleteDetails;
+import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.model.Plant;
+import in.karthika.util.Connectionutil;
 
 public class PlantData {
 
@@ -14,80 +23,115 @@ public class PlantData {
 	}
 
 	/**
-	 * Create constant
-	 */
-	private static final String FRUIT = "Fruit";
-	private static final String TREE = "Tree";
-	private static final String FLOWER = "Flower";
-	private static final String PLANT = "Plant";
-	private static final String VEGETABLE = "Vegetable";
-	private static final String MEDICINAL = "Medicinal";
-
-	/*
-	 * Create array list to store all plants
-	 */
-	private static List<Plant> plantList = new ArrayList<>();
-
-	static {
-
-		plantList.add(new Plant("Neem Tree", 60, TREE, MEDICINAL));
-		plantList.add(new Plant("Mango Tree", 40, TREE, FRUIT));
-		plantList.add(new Plant("Pappaya Tree", 45, TREE, FRUIT));
-		plantList.add(new Plant("Guava Tree", 70, TREE, FRUIT));
-		plantList.add(new Plant("Apple Tree", 100, TREE, FRUIT));
-		plantList.add(new Plant("Lemon Tree", 40, TREE, FRUIT));
-		plantList.add(new Plant("Coocnut Tree", 50, TREE, VEGETABLE));
-		plantList.add(new Plant("Rose", 100, PLANT, FLOWER));
-		plantList.add(new Plant("Tulip", 120, PLANT, FLOWER));
-		plantList.add(new Plant("Lily", 130, PLANT, FLOWER));
-		plantList.add(new Plant("Jasmine", 140, PLANT, FLOWER));
-		plantList.add(new Plant("Sunflower", 100, PLANT, FLOWER));
-		plantList.add(new Plant("Lotus", 90, PLANT, FLOWER));
-		plantList.add(new Plant("Daisy", 80, PLANT, FLOWER));
-		plantList.add(new Plant("Onion", 60, PLANT, VEGETABLE));
-		plantList.add(new Plant("Tomato", 30, PLANT, VEGETABLE));
-		plantList.add(new Plant("Carrot", 40, PLANT, VEGETABLE));
-		plantList.add(new Plant("Pea", 50, PLANT, VEGETABLE));
-		plantList.add(new Plant("Potato", 70, PLANT, VEGETABLE));
-		plantList.add(new Plant("Radish", 40, PLANT, VEGETABLE));
-		plantList.add(new Plant("Mushroom", 130, VEGETABLE));
-		plantList.add(new Plant("Capcicum", 100, PLANT, VEGETABLE));
-		plantList.add(new Plant("Tulsi", 50, PLANT, MEDICINAL));
-		plantList.add(new Plant("Pepper", 30, PLANT, VEGETABLE));
-
-	}
-
-	/**
-	 * This method is used to add the plant with type to the stock
-	 * 
-	 * @param plantname
-	 * @param amount
-	 * @param type
-	 * @param category
-	 */
-	public static void plantAdd1(String plantname, double amount, String type, String category) {
-		plantList.add(new Plant(plantname, amount, type, category));
-	}
-
-	/**
-	 * This method is used to add the plant without type to the stock
-	 * 
-	 * @param plantname
-	 * @param price
-	 * @param category
-	 */
-
-	public static void plantAdd2(String plantname, double price, String category) {
-		plantList.add(new Plant(plantname, price, category));
-	}
-
-	/**
-	 * This method is used to return plants
+	 * This method is used to get the plant details from the database
 	 * 
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static List<Plant> getPlants() {
+
+	public static List<Plant> plantDetails() throws Exception, SQLException {
+
+		List<Plant> plantList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		
+		try {
+			String url = "select * from plantList";
+			con = Connectionutil.getConnection();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(url);
+		
+			while (rs.next()) {
+				String plantName = rs.getString("Plant_Name");
+				String price = rs.getString("Cost");
+				double cost = Double.parseDouble(price);
+				String type = rs.getString("Type");
+				String category = rs.getString("Category");
+				plantList.add(new Plant(plantName, cost, type, category));
+			}
+		} 
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Invalid Plant Details");
+		} 
+		
+		finally {
+			Connectionutil.close(pst, con);
+		}
 		return plantList;
+	}
+
+	/**
+	 * This method is used to store the plant to the database
+	 * @param plant
+	 * @return
+	 * @throws Exception
+	 * @throws SQLException
+	 * @throws CannotAddException
+	 */
+	
+	public static boolean save(Plant plant) throws Exception, SQLException, CannotAddException {
+	
+		boolean isAdd = false;
+		Connection con = null;
+		PreparedStatement pst = null;
+		
+		try {
+			con = Connectionutil.getConnection();
+			String sql = "INSERT INTO plantList(Plant_Name,Cost,Type,Category) values (?,?,?,?)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, plant.getPlantName());
+			pst.setDouble(2, plant.getPrice());
+			pst.setString(3, plant.getPlantType());
+			pst.setString(4, plant.getCategory());
+		
+			int rows = pst.executeUpdate();
+			
+			if (rows == 1) {
+				isAdd = true;
+			}else {
+				throw new CannotAddException("Cannot Add");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Unable to add Plant");
+		} finally {
+			Connectionutil.close(pst, con);
+		}
+		
+		return isAdd;
+	}
+
+	public static boolean deletePlant(String plantName) throws Exception, CannotDeleteDetails {
+
+		boolean isDelete = false;
+		Connection connection = null;
+		PreparedStatement pst = null;
+
+		try {
+			connection = Connectionutil.getConnection();
+
+			String sql = "DELETE FROM plantList WHERE Plant_Name=?;";
+			pst = connection.prepareStatement(sql);
+			pst.setString(1, plantName);
+
+			int rs = pst.executeUpdate();
+
+			if (rs == 1) {
+				isDelete = true;
+			} else {
+				throw new CannotDeleteDetails("Cannot Delete");
+			}
+		} catch (SQLException e) {
+			throw new CannotGetCredentialException(e.getMessage());
+		} finally {
+			Connectionutil.close(pst, connection);
+		}
+
+		return isDelete;
+
 	}
 
 	/*

@@ -24,15 +24,16 @@ public class PlantAddServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String plantname = request.getParameter("plantname");
-		String price = request.getParameter("price");
-		String type = request.getParameter("type");
-		String category = request.getParameter("category");
-		boolean isValid = false;
 		try {
-			isValid = PlantService.checkPlant(plantname, price, type, category);
+			String plantname = request.getParameter("plantname");
+			String price = request.getParameter("price");
+			String type = request.getParameter("type");
+			String category = request.getParameter("category");
+			boolean isValid = false;
+
+			isValid = PlantService.addPlant(plantname, price, type, category);
 			if (isValid) {
-				response.sendRedirect("plant.jsp");
+				response.sendRedirect("plant.jsp?Plant SuccessFully Added");
 			} else {
 				response.sendRedirect("addPlant.jsp?errorMessage=Give Correct Details");
 			}

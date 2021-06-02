@@ -1,7 +1,10 @@
 package in.karthika.service;
 
+import java.sql.SQLException;
+
 import in.karthika.dao.AdminData;
 import in.karthika.model.Admin;
+import in.karthika.validate.LoginValidate;
 
 public class AdminService {
 
@@ -12,20 +15,22 @@ public class AdminService {
 	}
 
 	/**
-	 * This method is used to find the admin id is already registered If it is
-	 * already registered, it will return true else it will return false
+	 * This method is used to check the admin details
 	 * 
 	 * @param userId
 	 * @param password
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
 
-	public static boolean checkAdmin(String userId, String password) {
+	public static boolean checkAdmin(String userId, String password) throws SQLException, Exception {
 		boolean isValid = false;
 		long mobileNo = Long.parseLong(userId);
-		for (Admin admin : AdminData.getAdmin()) {
-			if (admin.getPhoneNumber() == mobileNo) {
-				if (admin.getPassWord().equals(password)) {
+		boolean validate = LoginValidate.checkLogin(userId, password);
+		for (Admin admin : AdminData.adminDetails()) {
+			if (admin.getAdminPhoneNumber() == mobileNo && validate) {
+				if (admin.getAdminPassWord().equals(password)) {
 					isValid = true;
 				}
 				break;
@@ -39,13 +44,15 @@ public class AdminService {
 	 * 
 	 * @param userId
 	 * @return
+	 * @throws Exception
+	 * @throws SQLException
 	 */
-	public static String getAdminName(String userId) {
+	public static String getAdminName(String userId) throws SQLException, Exception {
 		String name = null;
 		long mobileNo = Long.parseLong(userId);
-		for (Admin admin : AdminData.getAdmin()) {
-			if (admin.getPhoneNumber() == mobileNo) {
-				name = admin.getName();
+		for (Admin admin : AdminData.adminDetails()) {
+			if (admin.getAdminPhoneNumber() == mobileNo) {
+				name = admin.getAdminName();
 				break;
 			}
 		}

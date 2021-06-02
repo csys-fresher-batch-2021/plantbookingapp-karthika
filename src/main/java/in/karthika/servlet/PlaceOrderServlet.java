@@ -30,7 +30,7 @@ public class PlaceOrderServlet extends HttpServlet {
 			String userName = (String) session.getAttribute("LOGGED_IN_USER");
 			boolean isAdd = BillService.storeBillDetails(phoneNumber, userName);
 			if (isAdd) {
-				response.sendRedirect("bill.jsp");
+				response.sendRedirect("bill.jsp?Ordered Successful");
 			} else {
 				response.sendRedirect("displayCart.jsp?errorMessage=Can't Generated Bill");
 			}

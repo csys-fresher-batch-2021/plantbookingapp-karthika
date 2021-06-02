@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 					<th scope="col">ORDERED DATE</th>
-					<td><%=totalBill.getOrderDate()%></td>
+					<td><%=totalBill.getOrderData()%></td>
 				</tr>
 				<tr>
 					<th scope="col">DELIVERY DATE</th>
@@ -45,7 +45,7 @@
 				</tr>
 				<tr>
 					<th scope="col">TOTAL BILL</th>
-					<td><%=totalBill.getBill()%></td>
+					<td><%=totalBill.getTotalBill()%></td>
 				</tr>
 				<%}} %>
 			</tbody>
