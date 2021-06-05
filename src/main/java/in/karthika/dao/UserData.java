@@ -12,7 +12,7 @@ import in.karthika.exceptions.CannotAddException;
 import in.karthika.exceptions.CannotChangePasswordException;
 import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.model.User;
-import in.karthika.util.Connectionutil;
+import in.karthika.util.ConnectionUtil;
 
 
 public class UserData {
@@ -37,7 +37,7 @@ public class UserData {
 		PreparedStatement pst = null;
 
 		try {
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 
 			String sql = "insert into userlist(User_Id,User_Name,Contact_Number,Password) values ( ?,?,?,? )";
 			pst = con.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class UserData {
 			e.printStackTrace();
 			throw new RuntimeException("Unable to add user");
 		} finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 
 		return isAdd;
@@ -77,7 +77,7 @@ public class UserData {
 		PreparedStatement pst = null;
 
 		try {
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 
 			String url = "select * from userList";
 			Statement st = con.createStatement();
@@ -93,7 +93,7 @@ public class UserData {
 		} catch (SQLException e) {
 			throw new CannotGetCredentialException(e.getMessage());
 		} finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 
 		return userList;
@@ -115,7 +115,7 @@ public class UserData {
 		PreparedStatement pst = null;
 
 		try {
-			connection = Connectionutil.getConnection();
+			connection = ConnectionUtil.getConnection();
 
 			String sql = "update userList set Password=? where Contact_Number=?";
 			pst = connection.prepareStatement(sql);
@@ -132,7 +132,7 @@ public class UserData {
 		} catch (SQLException e) {
 			throw new CannotGetCredentialException(e.getMessage());
 		} finally {
-			Connectionutil.close(pst, connection);
+			ConnectionUtil.close(pst, connection);
 		}
 
 		return isChanged;

@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Connectionutil {
+public class ConnectionUtil {
 	
-	private Connectionutil() {
+	private ConnectionUtil() {
 		//Default constructor
 	}
 	private static String driverClass = System.getenv("spring.datasource.driver-class-name");

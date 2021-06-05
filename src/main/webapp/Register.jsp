@@ -36,16 +36,19 @@
 			<button type="submit" onclick="passcheck()">SUBMIT</button>
 		</form>
 		<%
-			String message = (String)session.getAttribute("Message");
-			if (message != null && message.equalsIgnoreCase("User is already exist")) {%>
-				<p  class="text-danger"><%=message %> </p>
-			<%}
-			%>
+		String message = (String) session.getAttribute("Message");
+		if (message != null && message.equalsIgnoreCase("User already exists")) {
+		%>
+		<p class="text-danger"><%=message%>
+		</p>
+		<%
+		}
+		%>
 		<script>
 			function nameValidate() {
 				let valid = false;
 				let name = document.querySelector("#userName").value;
-				if (name.charCodeAt(0) == 32) {
+				if (name.charCodeAt(0) == 32 && name.length() > 4) {
 					valid = true;
 				} else {
 					for (let i = 0; i < name.length; i++) {
@@ -77,16 +80,11 @@
 			function passcheck() {
 				let password1 = document.querySelector("#password1").value;
 				let password2 = document.querySelector("#password2").value;
-				if (password1.length == 8 && password2.length == 8) {
+				if (password1.length == 8 && password2.length == 8
+						&& password1 == password2) {
 
 				} else {
 					alert("Invalid Password");
-					event.preventDefault();
-				}
-				if (password1 == password2) {
-
-				} else {
-					alert("Password and confirm password should be same");
 					event.preventDefault();
 				}
 			}

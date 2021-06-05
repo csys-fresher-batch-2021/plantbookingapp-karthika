@@ -11,7 +11,7 @@ import java.util.List;
 
 import in.karthika.exceptions.CannotAddException;
 import in.karthika.model.Bill;
-import in.karthika.util.Connectionutil;
+import in.karthika.util.ConnectionUtil;
 
 public class BillData {
 
@@ -34,7 +34,7 @@ public class BillData {
 
 		try {
 			String url = "select * from billDetails";
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);
    
@@ -58,7 +58,7 @@ public class BillData {
 		}
 
 		finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 		return billDetails;
 	}
@@ -80,7 +80,7 @@ public class BillData {
 		PreparedStatement pst = null;
 
 		try {
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 			String sql = "INSERT INTO billDetails ( Order_Id, Customer_Name, Contact_Number, Order_Date, Delivery_Date, Bill, GST,Final_Bill) values (?,?,?,?,?,?,?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, bill.getOrderId());
@@ -103,7 +103,7 @@ public class BillData {
 			e.printStackTrace();
 			throw new RuntimeException("Unable to add Plant");
 		} finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 
 		return isAdd;

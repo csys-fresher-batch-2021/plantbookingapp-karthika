@@ -25,7 +25,7 @@
 									placeholder="Enter password" required></td>
 							</tr>
 						</table>
-						<a href="passwordChange.jsp">Forget Password</a>
+						<a href="passwordChange.jsp">Forget Password?</a>
 						<button type="submit" onclick="passcheck1()">SUBMIT</button>
 					</form>
 				</div>

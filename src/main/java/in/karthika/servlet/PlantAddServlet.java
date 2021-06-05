@@ -38,11 +38,11 @@ public class PlantAddServlet extends HttpServlet {
 			if (isValid) {
 				response.sendRedirect("plant.jsp?Plant SuccessFully Added");
 			} else {
-				session.setAttribute("Message", "Plant Alreay Exist");
+				session.setAttribute("Message", "Plant Already Exists");
 				response.sendRedirect("addPlant.jsp?errorMessage=Give Correct Details");
 			}
 		} catch (Exception e) {
-			session.setAttribute("Message", "Plant Alreay Exist");
+			session.setAttribute("Message", "Plant Already Exists");
 			response.sendRedirect("addPlant.jsp?errorMessage=Plant already exist in stock");
 		}
 	}
