@@ -1,6 +1,7 @@
 package in.karthika.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.karthika.exceptions.InvalidNumberException;
-import in.karthika.exceptions.NumberCannotBeNegativeException;
 import in.karthika.service.CartService;
 
 /**
@@ -41,7 +40,7 @@ public class AddQuantity extends HttpServlet {
 				response.sendRedirect("displayCart.jsp?errorMessage=" + errorMessage);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			response.sendRedirect("displayCart.jsp?errorMessage=Unable to add cart" );
 		}
 
 	}

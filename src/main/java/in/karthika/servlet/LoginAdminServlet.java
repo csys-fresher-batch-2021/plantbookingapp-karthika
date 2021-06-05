@@ -26,8 +26,8 @@ public class LoginAdminServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String userId = request.getParameter("userId");
-			String password = request.getParameter("password");
+			String userId = request.getParameter("adminId");
+			String password = request.getParameter("passcode");
 			boolean isValid = false;
 
 			isValid = AdminService.checkAdmin(userId, password);
@@ -44,7 +44,7 @@ public class LoginAdminServlet extends HttpServlet {
 		}
 
 		catch (Exception e) {
-			response.sendRedirect("Login.jsp?errorMessage=Unexpected Error");
+			response.sendRedirect("Login.jsp?errorMessage=Invalid admin details");
 		}
 
 	}

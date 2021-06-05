@@ -35,7 +35,7 @@ public class PlaceOrderServlet extends HttpServlet {
 				response.sendRedirect("displayCart.jsp?errorMessage=Can't Generated Bill");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("displayCart.jsp?errorMessage=Unexpected Error");
+			response.sendRedirect("displayCart.jsp?errorMessage=Can't Generated Bill");
 		}
 	}
 

@@ -34,7 +34,7 @@ public class DeletePlantServlet extends HttpServlet {
 				response.sendRedirect("plant.jsp?errorMessage=" + errorMessage);
 			}
 		} catch (Exception e) {
-			response.sendRedirect("plant.jsp?errorMessage=Unexpected error");
+			response.sendRedirect("plant.jsp?errorMessage=Unable to delete the plant");
 		}
 	}
 

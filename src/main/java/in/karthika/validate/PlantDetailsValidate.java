@@ -33,7 +33,7 @@ public class PlantDetailsValidate {
 		boolean isValid = false;
 		boolean isNameValid = NameValidate.validateName(plantname);
 		boolean isPositive = NumberValidate.positiveNumberValidate(price);
-		if (isNameValid && isPositive) {
+		if (isNameValid && isPositive ) {
 			isValid = true;
 		} else {
 			throw new InvalidDetailsException("Invalid plant details");

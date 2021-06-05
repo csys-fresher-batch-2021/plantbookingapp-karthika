@@ -3,7 +3,7 @@ package in.karthika.util;
 import in.karthika.exceptions.NumberCannotBeNegativeException;
 
 public class NumberValidate {
-	
+
 	private NumberValidate() {
 		/*
 		 * Constructor

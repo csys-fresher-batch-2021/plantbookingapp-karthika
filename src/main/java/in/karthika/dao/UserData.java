@@ -14,6 +14,7 @@ import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.model.User;
 import in.karthika.util.Connectionutil;
 
+
 public class UserData {
 
 	private UserData() {
@@ -27,7 +28,6 @@ public class UserData {
 	 * 
 	 * @param user
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 
 	public static boolean save(User user) throws Exception {
@@ -86,8 +86,7 @@ public class UserData {
 			while (rs.next()) {
 				String userId = rs.getString("User_Id");
 				String userName = rs.getString("User_Name");
-				String phoneNumber = rs.getString("Contact_Number");
-				long contactNumber = Long.parseLong(phoneNumber);
+				long contactNumber =  rs.getLong("Contact_Number");
 				String password = rs.getString("Password");
 				userList.add(new User(userId, userName, contactNumber, password));
 			}
@@ -109,7 +108,7 @@ public class UserData {
 	 * @throws Exception
 	 */
 
-	public static boolean changePassword(String phoneNumber, String newPassword) throws Exception {
+	public static boolean changePassword(long phoneNumber, String newPassword) throws Exception {
 
 		boolean isChanged = false;
 		Connection connection = null;
@@ -121,7 +120,7 @@ public class UserData {
 			String sql = "update userList set Password=? where Contact_Number=?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, newPassword);
-			pst.setString(2, phoneNumber);
+			pst.setLong(2, phoneNumber);
 
 			int rs = pst.executeUpdate();
 

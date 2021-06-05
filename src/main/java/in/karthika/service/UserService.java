@@ -1,9 +1,6 @@
 package in.karthika.service;
 
-import java.sql.SQLException;
-
 import in.karthika.dao.UserData;
-import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.exceptions.InvalidDetailsException;
 import in.karthika.exceptions.PasswordMismatchException;
 import in.karthika.model.User;
@@ -27,8 +24,6 @@ public class UserService {
 	 * @param password1
 	 * @param password2
 	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws InvalidDetailsException
 	 * @throws Exception
 	 */
 	public static boolean insertUser(String userName, String phoneNumber, String password1, String password2)
@@ -55,7 +50,6 @@ public class UserService {
 	 * @param mobileNo
 	 * @param password
 	 * @return
-	 * @throws SQLException
 	 * @throws Exception
 	 */
 
@@ -101,8 +95,6 @@ public class UserService {
 	 * 
 	 * @param mobileNumber
 	 * @return
-	 * @throws CannotGetCredentialException
-	 * @throws ClassNotFoundException
 	 * @throws Exception
 	 */
 	public static boolean isExist(long mobileNumber) throws Exception {
@@ -124,7 +116,6 @@ public class UserService {
 	 * @param password
 	 * @return
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 	public static boolean checkUser(String userId, String password) throws Exception {
 		boolean isValid = false;
@@ -147,7 +138,6 @@ public class UserService {
 	 * @param userId
 	 * @return
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 
 	public static String getUserName(String phoneNumber) throws Exception {
@@ -170,14 +160,13 @@ public class UserService {
 	 * @param password2
 	 * @return
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 
 	public static boolean changepassword(String phoneNumber, String password1, String password2) throws Exception {
 		long mobileNo = Long.parseLong(phoneNumber);
 		boolean change = false;
 		if (isEqual(password1, password2) && PasswordValidate.validatePassword(password1) && isExist(mobileNo)) {
-			change = UserData.changePassword(phoneNumber, password1);
+			change = UserData.changePassword(mobileNo, password1);
 
 		} else {
 			throw new InvalidDetailsException("Invalid Detailsss");

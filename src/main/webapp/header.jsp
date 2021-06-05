@@ -7,6 +7,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
 <%
 String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
+String access = (String) session.getAttribute("FILTER");
 %>
 <header>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -20,10 +21,11 @@ String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
       <li class="nav-item active">
         <a class="nav-link" href="index.jsp">HOME <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item"><%if( access == null){ %>
        <a class="nav-link" href="plant.jsp">PLANTS</a>
+       <%} %>
        </li>
-       <% if (loggedInUsername != null){ %>
+       <% if (loggedInUsername != null && access == null ){ %>
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter By Category</a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

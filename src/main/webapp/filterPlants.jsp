@@ -7,6 +7,7 @@
 <title>Plants</title>
 </head>
 <body>
+<%session.removeAttribute("FILTER"); %>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<h3>Plant Stock</h3>

@@ -32,12 +32,12 @@ public class PasswordChangeServlet extends HttpServlet {
 			if (isChange) {
 				response.sendRedirect("Login.jsp?Successfully Changed");
 			} else {
-				response.sendRedirect("passwordChange.jsp?errorMessage=Can't Change");
+				response.sendRedirect("passwordChange.jsp?errorMessage=Can't Change your password");
 			}
 		}
 
 		catch (Exception e) {
-			response.sendRedirect("passwordChange.jsp?errorMessage=Unexpecter error");
+			response.sendRedirect("passwordChange.jsp?errorMessage=The user is not exist");
 		}
 	}
 

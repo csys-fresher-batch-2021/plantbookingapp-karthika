@@ -27,12 +27,12 @@ public class Filterplants extends HttpServlet {
 			String filter = request.getParameter("filter");
 			boolean isFilter = PlantService.filterPlants(filter);
 			if (isFilter) {
-				response.sendRedirect("filterPlants.jsp?Successfully deleted");
+				response.sendRedirect("filterPlants.jsp?Success");
 			} else {
 				response.sendRedirect("plant.jsp?errorMessage=Can't filter");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("plant.jsp?errorMessage=Unexpected error");
+			response.sendRedirect("plant.jsp?errorMessage=Can't filter the plants");
 		}
 	}
 }

@@ -11,7 +11,9 @@
 	<br/><br/>
     <a class="btn btn-secondary" href="registeredUser.jsp">DISPLAY ALL USERS</a>
     <br/><br/>
-    <a class="btn btn-success" href="plant.jsp">DELETE PLANTS</a>
+    <a class="btn btn-danger" href="plant.jsp">DELETE PLANTS</a>
+    <br/><br/>
+    <a class="btn btn-success" href="displayAllUsersBillDetails.jsp">VIEW ORDER DETAILS</a>
 	</main>
 </body>
 </html>
