@@ -12,7 +12,7 @@
 				<caption>Register</caption>
 				<tr>
 					<th scope="col">NAME</th>
-					<td><input type="text" name="userName" id="userName"
+					<td><input type="text" name="userName" id="userName"  
 						onchange="nameValidate()" placeholder="Enter user name" required
 						autofocus></td>
 				</tr>
@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<th scope="col">PASSWORD</th>
-					<td><input type="password" name="password1" id="password1"
+					<td><input type="password" name="password1" id="password1" 
 						placeholder="Enter password" required></td>
 				</tr>
 				<tr>
@@ -33,7 +33,7 @@
 						placeholder="Re-Enter password" required></td>
 				</tr>
 			</table>
-			<button type="submit" onclick="passcheck()">SUBMIT</button>
+			<button type="submit" onclick="checkall()">SUBMIT</button>
 		</form>
 		<%
 		String message = (String) session.getAttribute("Message");
@@ -77,16 +77,25 @@
 				}
 			}
 
-			function passcheck() {
-				let password1 = document.querySelector("#password1").value;
-				let password2 = document.querySelector("#password2").value;
-				if (password1.length == 8 && password2.length == 8
-						&& password1 == password2) {
+			function checkall() {
+				let password1 = document.querySelector('#password1').value;
+				let password2 = document.querySelector('#password2').value;
+				let name = document.querySelector('#userName').value;
+				let phonenumber = document.querySelector('#mobileNumber').value;
+				if (password1.length == 0 || password2.length == 0 || name.length == 0
+						|| phonenumber.length == 0) {
+					alert("Enter All Details");
+				} 
+				else {
+					if (password1.length == 8 && password2.length == 8
+							&& password1 == password2) {
 
-				} else {
-					alert("Invalid Password");
-					event.preventDefault();
+					} else {
+						alert("Invalid Password");
+						event.preventDefault();
+					}
 				}
+
 			}
 		</script>
 	</main>
