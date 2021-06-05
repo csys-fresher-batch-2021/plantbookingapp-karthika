@@ -40,9 +40,9 @@ public class AdminData {
 			
 			while (rs.next()) {
 				String userName = rs.getString("Admin_Name");
-				String phoneNumber = rs.getString("Contact_Number");
-				long contactNumber = Long.parseLong(phoneNumber);
+				long contactNumber = rs.getLong("Contact_Number");
 				String password = rs.getString("Password");
+				
 				adminList.add(new Admin(userName, contactNumber, password));
 			}
 		} catch (Exception e) {

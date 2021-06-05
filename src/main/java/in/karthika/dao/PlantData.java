@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.karthika.exceptions.CannotAddException;
-import in.karthika.exceptions.CannotDeleteDetails;
+import in.karthika.exceptions.CannotDeletePlantException;
 import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.model.Plant;
 import in.karthika.util.Connectionutil;
@@ -122,7 +122,7 @@ public class PlantData {
 			if (rs == 1) {
 				isDelete = true;
 			} else {
-				throw new CannotDeleteDetails("Cannot Delete");
+				throw new CannotDeletePlantException("Cannot delete the plant");
 			}
 		} catch (SQLException e) {
 			throw new CannotGetCredentialException(e.getMessage());

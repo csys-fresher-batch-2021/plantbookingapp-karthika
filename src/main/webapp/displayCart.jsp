@@ -45,7 +45,7 @@
 						<form action="AddQuantity">
 							<input type="text" id="quantity" name="quantity"
 								placeholder="Quantity" required autofocus>
-							<button class="btn btn-primary" type="submit">CONFIRM</button>
+							<button class="btn btn-primary" onclick="quantityCheck()" type="submit">CONFIRM</button>
 					</td>
 					<td><a class="btn btn-primary"
 						href="DeleteCartPlantServlet?plantName=<%=cart.getPlantName()%>">DELETE</a></td>
@@ -78,5 +78,16 @@
 		}
 		%>
 	</main>
+	<script>
+	function quantityCheck() {
+		let cost = document.querySelector("#quantity").value;
+		if (cost > 0) {
+
+		} else {
+			alert("Invalid Quantity");
+			event.preventDefault();
+		}
+	}
+	</script>
 </body>
 </html>

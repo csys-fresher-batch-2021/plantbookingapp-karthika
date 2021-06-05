@@ -38,7 +38,7 @@ public class PlantAddServlet extends HttpServlet {
 				response.sendRedirect("addPlant.jsp?errorMessage=Give Correct Details");
 			}
 		} catch (Exception e) {
-			response.sendRedirect("addPlant.jsp?errorMessage=Unexpected Error");
+			response.sendRedirect("addPlant.jsp?errorMessage=Plant already exist in stock");
 		}
 	}
 

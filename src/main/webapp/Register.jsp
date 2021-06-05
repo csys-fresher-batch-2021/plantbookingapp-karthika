@@ -12,12 +12,12 @@
 				<caption>Register</caption>
 				<tr>
 					<th scope="col">NAME</th>
-					<td><input type="text" name="userName" id="userName"
+					<td><input type="text" name="userName" id="userName" onchange="nameValidate()"
 						placeholder="Enter user name" required autofocus></td>
 				</tr>
 				<tr>
 					<th scope="col">MOBILE NUMBER</th>
-					<td><input type="number" name="mobileNumber" id="mobileNumber"
+					<td><input type="number" name="mobileNumber" id="mobileNumber" onchange="phonenumber()"
 						placeholder="Enter your phone number" required></td>
 				</tr>
 				<tr>
@@ -31,8 +31,56 @@
 						placeholder="Re-Enter password" required></td>
 				</tr>
 			</table>
-			<button type="submit">SUBMIT</button>
+			<button type="submit" onclick="passcheck()">SUBMIT</button>
 		</form>
+		<script >
+		function nameValidate() {
+			let valid=false;
+			let name = document.querySelector("#userName").value;
+	        if(name.charCodeAt(0) == 32){
+	            valid = true;
+	        }else{
+	        for(let i = 0; i < name.length; i++){
+	            if(!(name.charCodeAt(i) >= 65 && name.charCodeAt(i) <= 90       
+	             || name.charCodeAt(i) >= 97 && name.charCodeAt(i) <= 122
+	             || name.charCodeAt(i) == 32)){
+	                valid = true;
+	             }
+	        }
+	        }
+	        if(valid){
+	        	alert("Invalid Name");
+	        	event.preventDefault();
+	        }
+		}
+		
+		function phonenumber() {
+			let mobileNumber = document.querySelector("#mobileNumber").value;
+			if (mobileNumber.trim().length == 10) {
+			
+			} else {
+				alert("Incorrect Mobile Number");
+				event.preventDefault();
+			}
+		}
+
+		function passcheck() {
+			let password1 = document.querySelector("#password1").value;
+			let password2 = document.querySelector("#password2").value;
+			if (password1.length == 8 && password2.length == 8) {
+
+			} else {
+				alert("Invalid Password");
+				event.preventDefault();
+			}
+			if(password1==password2){
+				
+			}else{
+				alert("Password and confirm password should be same");
+				event.preventDefault();
+			}
+		}
+		</script>
 	</main>
 </body>
 </html>

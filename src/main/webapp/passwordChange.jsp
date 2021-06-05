@@ -11,10 +11,10 @@
 	<main class="container-fluid">
 		<form action="PasswordChangeServlet">
 			<table>
-			<caption>Password Change</caption>
+				<caption>Password Change</caption>
 				<tr>
 					<th scope="col">MOBILE NUMBER</th>
-					<td><input type="number" id="phoneNumber" name="phoneNumber"
+					<td><input type="number" id="phoneNumber" name="phoneNumber" onchange="phonenumber()"
 						placeholder="Enter Mobile Number" required autofocus></td>
 				</tr>
 				<tr>
@@ -28,8 +28,36 @@
 						placeholder="Re-Enter Password" required></td>
 				</tr>
 			</table>
-			<button type="submit">SUBMIT</button>
+			<button type="submit" onclick="passcheck()">SUBMIT</button>
 		</form>
+		<script>
+			function phonenumber() {
+				let mobileNumber = document.querySelector("#phoneNumber").value;
+				if (mobileNumber.trim().length == 10) {
+
+				} else {
+					alert("Incorrect Mobile Number");
+					event.preventDefault();
+				}
+			}
+
+			function passcheck() {
+				let password1 = document.querySelector("#password1").value;
+				let password2 = document.querySelector("#password2").value;
+				if (password1.length == 8 && password2.length == 8) {
+
+				} else {
+					alert("Invalid Password");
+					event.preventDefault();
+				}
+				if (password1 == password2) {
+
+				} else {
+					alert("Password and confirm password should be same");
+					event.preventDefault();
+				}
+			}
+		</script>
 	</main>
 
 </body>

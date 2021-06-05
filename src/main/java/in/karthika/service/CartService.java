@@ -1,12 +1,13 @@
 package in.karthika.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import in.karthika.dao.CartData;
 import in.karthika.dao.PlantData;
+import in.karthika.exceptions.CannotDeletePlantException;
 import in.karthika.exceptions.InvalidNumberException;
 import in.karthika.exceptions.NumberCannotBeNegativeException;
+import in.karthika.exceptions.PlantNotExistException;
 import in.karthika.model.Cart;
 import in.karthika.model.Plant;
 import in.karthika.util.NumberValidate;
@@ -25,11 +26,10 @@ public class CartService {
 	 * @param plantName
 	 * @return
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 	public static boolean addtoCart(String plantName) throws Exception {
 		boolean isAdd = false;
-		boolean exist = false;
+		boolean exist = checkCart(plantName);
 		double price = 0;
 		for (Plant add : PlantData.plantDetails()) {
 			if (add.getPlantName().equalsIgnoreCase(plantName.trim())) {
@@ -37,7 +37,6 @@ public class CartService {
 				break;
 			}
 		}
-		exist = checkCart(plantName);
 		if (!exist) {
 			CartData.addCart(plantName, price);
 			isAdd = true;
@@ -51,6 +50,7 @@ public class CartService {
 	 * 
 	 * @param plantName
 	 * @return
+	 * @throws PlantNotExistException
 	 */
 	public static boolean checkCart(String plantName) {
 		boolean check = false;
@@ -59,6 +59,7 @@ public class CartService {
 				check = true;
 				break;
 			}
+
 		}
 		return check;
 
@@ -72,14 +73,16 @@ public class CartService {
 	 * @return
 	 * @throws InvalidNumberException
 	 * @throws NumberCannotBeNegativeException
+	 * @throws PlantNotExistException
 	 */
-	public static boolean addQauantity(String qnty, String plantName) throws NumberCannotBeNegativeException {
+	public static boolean addQauantity(String qnty, String plantName)
+			throws NumberCannotBeNegativeException, InvalidNumberException {
+		boolean isPositive = NumberValidate.positiveNumberValidate(qnty);
 		int quantity = Integer.parseInt(qnty);
 		List<Cart> cartPlant = CartData.getCart();
 		boolean isAdded = false;
-		boolean check = NumberValidate.positiveNumberValidate(qnty);
 		for (Cart cart : CartData.getCart()) {
-			if (cart.getPlantName().equalsIgnoreCase(plantName.trim()) && check) {
+			if (cart.getPlantName().equalsIgnoreCase(plantName.trim()) && isPositive) {
 				double price = cart.getPrice();
 				cartPlant.remove(cart);
 				double priceOfAplan = price * quantity;
@@ -96,9 +99,10 @@ public class CartService {
 	 * 
 	 * @param plantName
 	 * @return
+	 * @throws CannotDeletePlantException
 	 */
 
-	public static boolean deletePlant(String plantName) {
+	public static boolean deletePlant(String plantName)  {
 		boolean delete = false;
 		int i = -1;
 		List<Cart> cartList = CartData.getCart();
@@ -108,9 +112,18 @@ public class CartService {
 				cartList.remove(i);
 				delete = true;
 				break;
-			}
+			} 
 		}
 		return delete;
+	}
+
+	/**
+	 * This method is used to delete all plants in cart
+	 */
+	public static void clearCart() {
+		List<Cart> cartList = CartData.getCart();
+		cartList.removeAll(cartList);
+		
 	}
 
 }

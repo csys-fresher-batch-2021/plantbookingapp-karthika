@@ -43,7 +43,7 @@ public class LoginUserServlet extends HttpServlet {
 		}
 
 		catch (Exception e) {
-			response.sendRedirect("Login.jsp?errorMessage=Unexpected Error");
+			response.sendRedirect("Login.jsp?errorMessage=This phone number is not already registered");
 		}
 	}
 

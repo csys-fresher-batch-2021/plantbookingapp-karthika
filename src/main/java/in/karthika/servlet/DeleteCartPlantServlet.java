@@ -33,7 +33,7 @@ public class DeleteCartPlantServlet extends HttpServlet {
 				response.sendRedirect("displayCart.jsp?errorMessage=" + errorMessage);
 			}
 		} catch (Exception e) {
-			response.sendRedirect("displayCart.jsp?errorMessage=Unexpected error");
+			response.sendRedirect("displayCart.jsp?errorMessage=Unable to delete the plant from your cart");
 		}
 	}
 

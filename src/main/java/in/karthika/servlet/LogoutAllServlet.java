@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import in.karthika.service.CartService;
+
 /**
  * Servlet implementation class LogoutAllServlet
  */
@@ -26,6 +28,8 @@ public class LogoutAllServlet extends HttpServlet {
 		session.removeAttribute("LOGGED_IN_USER");
 		session.removeAttribute("ROLE");
 		session.removeAttribute("PHONE_NUMBER");
+		session.removeAttribute("FILTER"); 
+		CartService.clearCart();
 		response.sendRedirect("Login.jsp");
 	}
 

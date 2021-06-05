@@ -9,20 +9,44 @@
 <title>BILL</title>
 </head>
 <body>
+<%String phoneNumber = (String) session.getAttribute("PHONE_NUMBER"); %>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
-		<h3>TOTAL BILL</h3>
+	<table class="table table-bordered">
+			<caption>Cart</caption>
+			<thead>
+				<tr>
+					<th scope="col">S.NO</th>
+					<th scope="col">PLANT NAME</th>
+					<th scope="col">PRICE (Rs)</th>
+					<th scope="col">QUANTITY</th>
+					<th scope="col">PRICE FOR A PLANT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				List<Cart> cartList = CartData.getCart();
+				int i = 0;
+				int j = 0;
+				for (Cart cart : cartList) {
+					i++;
+				%>
+				<tr>
+					<td><%=i%></td>
+					<td><%=cart.getPlantName()%></td>
+					<td>Rs.<%=cart.getPrice()%></td>
+					<td><%=cart.getQuantity()%></td>
+					<td><%=cart.getAmountForAplant()%></td>
+					</tr></tbody><%} %></table>
+	
+		<h3>BILL DETAILS</h3>
 		<table class="table table-bordered">
 			<caption>BILL</caption>
 			<tbody>
 				<%
-				String phoneNumber = (String) session.getAttribute("PHONE_NUMBER");
-				List<Bill> bill=BillData.getBill();
-				Bill total=new Bill();
-				int i = 0;
-				for(Bill totalBill:bill){
+				for(Bill totalBill:BillData.billDetails()){
 					String mobileNumber=String.valueOf(totalBill.getMobileNumber());
-					if(phoneNumber.equalsIgnoreCase(mobileNumber)){%>
+					if(phoneNumber.equalsIgnoreCase(mobileNumber) && phoneNumber!=null){%>
 				<tr>
 					<th scope="col">ORDER ID</th>
 					<td><%=totalBill.getOrderId()%></td>
@@ -45,9 +69,17 @@
 				</tr>
 				<tr>
 					<th scope="col">TOTAL BILL</th>
-					<td><%=totalBill.getTotalBill()%></td>
+					<td>RS.<%=totalBill.getTotalBill()%></td>
 				</tr>
-				<%}} %>
+				<tr>
+					<th scope="col">GST</th>
+					<td><%=totalBill.getGst() %>%</td>
+				</tr>
+				<tr>
+					<th scope="col">FINAL BILL</th>
+					<td>RS.<%=totalBill.getFinalBill() %></td>
+				</tr>
+				<% break;}} %>
 			</tbody>
 		</table>
 	</main>

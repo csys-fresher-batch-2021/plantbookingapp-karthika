@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import in.karthika.dao.PlantData;
+import in.karthika.exceptions.PlantAlreadyExistException;
 import in.karthika.model.Plant;
 import in.karthika.validate.PlantDetailsValidate;
 
@@ -24,16 +25,20 @@ public class PlantService {
 	 * @param category
 	 * @return
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 	public static boolean addPlant(String plantname, String price, String type, String category) throws Exception {
+	
 		boolean isValid = PlantDetailsValidate.checkPlant(plantname, price);
 		boolean isAdd = false;
 		boolean exist = isPlantExist(plantname);
 		double cost = Double.parseDouble(price);
+	
 		if (!exist && isValid) {
 			Plant plant = new Plant(plantname, cost, type, category);
 			isAdd = PlantData.save(plant);
+		}
+		else {
+			throw new PlantAlreadyExistException("The Plant is Already exist in the stock");
 		}
 		return isAdd;
 	}
@@ -43,7 +48,6 @@ public class PlantService {
 	 * 
 	 * @param plantName
 	 * @return
-	 * @throws SQLException
 	 * @throws Exception
 	 */
 
@@ -68,7 +72,7 @@ public class PlantService {
 	 */
 	public static boolean deletePlant(String plantName) throws Exception {
 		return PlantData.deletePlant(plantName.trim());
-
+		
 	}
 
 	/**
@@ -77,7 +81,6 @@ public class PlantService {
 	 * @param filter
 	 * @return
 	 * @throws Exception
-	 * @throws SQLException
 	 */
 
 	public static boolean filterPlants(String filter) throws Exception {

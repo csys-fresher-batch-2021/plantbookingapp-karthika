@@ -5,10 +5,11 @@ import java.util.List;
 
 import in.karthika.dao.BillData;
 import in.karthika.dao.CartData;
+import in.karthika.model.Bill;
 import in.karthika.model.Cart;
 
 public class BillService {
-	
+
 	private BillService() {
 		/**
 		 * Constructor
@@ -21,16 +22,31 @@ public class BillService {
 	 * @param phoneNumber
 	 * @param userName
 	 * @return
+	 * @throws Exception
 	 */
-	public static boolean storeBillDetails(String phoneNumber, String userName) {
+	public static boolean storeBillDetails(String phoneNumber, String userName) throws Exception {
 		long mobileNumber = Long.parseLong(phoneNumber);
 		LocalDate todayDate = LocalDate.now();
 		LocalDate deliveryDate = todayDate.plusDays(3);
 		String orderId = getOrderId(userName, phoneNumber);
 		List<Cart> cartDetails = CartData.getCart();
 		double totalBill = generateBill(cartDetails);
-		BillData.addCart(orderId, userName, mobileNumber, todayDate, deliveryDate, totalBill, cartDetails);
+		double gst = 15.5;
+		double finalBill = generateFinalBill(totalBill, gst);
+		Bill bill = new Bill(orderId, userName, mobileNumber, todayDate, deliveryDate, totalBill, gst, finalBill);
+		BillData.save(bill);
 		return true;
+	}
+
+	/**
+	 * This method used to generate bill with gst
+	 * 
+	 * @param totalBill
+	 * @param gst
+	 * @return
+	 */
+	private static double generateFinalBill(double totalBill, double gst) {
+		return totalBill + totalBill * (gst / 100);
 	}
 
 	/**
