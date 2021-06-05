@@ -11,6 +11,14 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<h3>Plant Stock</h3>
+		<%
+		String message = (String) session.getAttribute("Message");
+		if (message != null) {
+		%>
+		<p class="text-danger"><%=message%></p>
+		<%
+		}
+		%>
 		<table class="table table-bordered">
 			<caption>Our Stock</caption>
 			<thead>

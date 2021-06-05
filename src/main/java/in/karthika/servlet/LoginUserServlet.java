@@ -25,24 +25,27 @@ public class LoginUserServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		try {
+			session.removeAttribute("Message");
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
 			boolean isValid = UserService.checkUser(userId, password);
 			if (isValid) {
 				String username = UserService.getUserName(userId);
-				HttpSession session = request.getSession();
-				session.setAttribute("LOGGED_IN_USER", username); 
-				session.setAttribute("PHONE_NUMBER", userId); 
+				session.setAttribute("LOGGED_IN_USER", username);
+				session.setAttribute("PHONE_NUMBER", userId);
 				session.setAttribute("ROLE", "USER");
 				response.sendRedirect("plant.jsp?Login Successful");
 			} else {
+				session.setAttribute("Message", "Invalid Login Credentials");
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}
 
 		}
 
 		catch (Exception e) {
+			session.setAttribute("Message", "Invalid Login Credentials");
 			response.sendRedirect("Login.jsp?errorMessage=This phone number is not already registered");
 		}
 	}

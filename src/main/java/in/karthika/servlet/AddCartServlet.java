@@ -25,19 +25,21 @@ public class AddCartServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		try {
-			HttpSession session = request.getSession();
+			session.removeAttribute("Message");
 			session.setAttribute("FILTER","DONTALLOW" );
 			String plantName = request.getParameter("plantName");
 			boolean isAddtoCart = CartService.addtoCart(plantName);
 			if (isAddtoCart) {
 				response.sendRedirect("displayCart.jsp?Successfully added to the cart");
 			} else {
-
+				session.setAttribute("Message", "Plant is already exist in your cart");
 				String errorMessage = "Unable to add to cart";
 				response.sendRedirect("plant.jsp?errorMessage=" + errorMessage);
 			}
 		} catch (Exception e) {
+			session.setAttribute("Message", "Plant is already exist in your cart");
 			response.sendRedirect("plant.jsp?errorMessage=unable to add cart");
 		}
 

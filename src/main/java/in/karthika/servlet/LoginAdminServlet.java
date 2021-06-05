@@ -25,7 +25,9 @@ public class LoginAdminServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		try {
+			session.removeAttribute("Message");
 			String userId = request.getParameter("adminId");
 			String password = request.getParameter("passcode");
 			boolean isValid = false;
@@ -33,17 +35,18 @@ public class LoginAdminServlet extends HttpServlet {
 			isValid = AdminService.checkAdmin(userId, password);
 			if (isValid) {
 				String username = AdminService.getAdminName(userId);
-				HttpSession session = request.getSession();
 				session.setAttribute("LOGGED_IN_USER", username);
 				session.setAttribute("ROLE", "ADMIN");
 				response.sendRedirect("Adminpage.jsp?Login Successful");
 			} else {
+				session.setAttribute("Message", "Invalid Login Credentials");
 				response.sendRedirect("Login.jsp?errorMessage=Invalid Login Credentials");
 			}
 
 		}
 
 		catch (Exception e) {
+			session.setAttribute("Message", "Invalid Login Credentials");
 			response.sendRedirect("Login.jsp?errorMessage=Invalid admin details");
 		}
 

@@ -94,6 +94,14 @@
 				</div>
 			</div>
 		</div>
+		<%
+		String message = (String) session.getAttribute("Message");
+		if (message != null && message.equalsIgnoreCase("Invalid Login Credentials")) {
+		%>
+		<p class="text-danger"><%=message%></p>
+		<%
+		}
+		%>
 	</main>
 </body>
 </html>

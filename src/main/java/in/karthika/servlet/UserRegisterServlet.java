@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import in.karthika.service.UserService;
 
@@ -24,7 +25,9 @@ public class UserRegisterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		try {
+			session.removeAttribute("Message");
 			String username = request.getParameter("userName");
 			String mobilenumber = request.getParameter("mobileNumber");
 			String password1 = request.getParameter("password1");
@@ -33,9 +36,11 @@ public class UserRegisterServlet extends HttpServlet {
 			if (isValid) {
 				response.sendRedirect("Login.jsp?Registered Successful");
 			} else {
+				session.setAttribute("Message", "Invalid details");
 				response.sendRedirect("Register.jsp?errorMessage=Invalid Login Credentials");
 			}
 		} catch (Exception e) {
+			session.setAttribute("Message", "User is already exist");
 			response.sendRedirect("Register.jsp?errorMessage=Invalid Login Credentials");
 		}
 
