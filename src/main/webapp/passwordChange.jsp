@@ -29,7 +29,7 @@
 						placeholder="Re-Enter Password" required></td>
 				</tr>
 			</table>
-			<button type="submit" onclick="passcheck()">SUBMIT</button>
+			<button type="submit" onclick="checkall()">SUBMIT</button>
 		</form>
 		<script>
 			function phonenumber() {
@@ -42,16 +42,23 @@
 				}
 			}
 
-			function passcheck() {
-				let password1 = document.querySelector("#password1").value;
-				let password2 = document.querySelector("#password2").value;
-				if (password1.length == 8 && password2.length == 8
-						&& password1 == password2) {
-
+			function checkall() {
+				let password1 = document.querySelector('#password1').value;
+				let password2 = document.querySelector('#password2').value;
+				let phonenumber = document.querySelector('#phoneNumber').value;
+				if (password1.length == 0 || password2.length == 0
+						|| phonenumber.length == 0) {
+					alert("Enter All Details");
 				} else {
-					alert("Invalid Password");
-					event.preventDefault();
+					if (password1.length == 8 && password2.length == 8
+							&& password1 == password2) {
+
+					} else {
+						alert("Invalid Password");
+						event.preventDefault();
+					}
 				}
+
 			}
 		</script>
 		<%
