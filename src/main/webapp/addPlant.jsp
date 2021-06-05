@@ -41,7 +41,15 @@
 				</tr>
 			</table>
 			<button type="submit">SUBMIT</button>
-		</form>
+		</form><br/>
+		<%
+		String message = (String) session.getAttribute("Message");
+		if (message != null) {
+		%>
+		<p class="text-danger"><%=message%></p>
+		<%
+		}
+		%>
 		<a class="btn btn-secondary" href="Adminpage.jsp">BACK</a>
 		<script>
 			function plantNameValidate() {

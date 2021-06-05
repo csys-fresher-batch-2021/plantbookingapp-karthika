@@ -58,7 +58,14 @@
 				}
 			}
 		</script>
+		<%
+		String message = (String) session.getAttribute("Message");
+		if (message != null && message.equalsIgnoreCase("User is not registered")) {
+		%>
+		<p class="text-danger"><%=message%></p>
+		<%
+		}
+		%>
 	</main>
-
 </body>
 </html>

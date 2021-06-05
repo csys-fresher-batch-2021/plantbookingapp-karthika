@@ -12,7 +12,7 @@
 		<h3>All Registered User Details</h3>
 		<form action="LoginUserServlet" method="post">
 			<table class="table table-bordered">
-				<caption>Our Stock</caption>
+				<caption>User</caption>
 				<thead>
 					<tr>
 						<th scope="col">S.NO</th>
