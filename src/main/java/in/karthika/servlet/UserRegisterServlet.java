@@ -40,7 +40,7 @@ public class UserRegisterServlet extends HttpServlet {
 				response.sendRedirect("Register.jsp?errorMessage=Invalid Login Credentials");
 			}
 		} catch (Exception e) {
-			session.setAttribute("Message", "User is already exist");
+			session.setAttribute("Message", "User already exists");
 			response.sendRedirect("Register.jsp?errorMessage=Invalid Login Credentials");
 		}
 

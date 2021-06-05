@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.karthika.model.Admin;
-import in.karthika.util.Connectionutil;
+import in.karthika.util.ConnectionUtil;
 
 public class AdminData {
 
@@ -34,7 +34,7 @@ public class AdminData {
 
 		try {
 			String url = "select * from adminlist";
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);
 			
@@ -49,7 +49,7 @@ public class AdminData {
 			e.printStackTrace();
 			throw new RuntimeException("Invalid User");
 		} finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 
 		return adminList;

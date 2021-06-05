@@ -32,11 +32,11 @@ public class Filterplants extends HttpServlet {
 			if (isFilter) {
 				response.sendRedirect("filterPlants.jsp?Success");
 			} else {
-				session.setAttribute("Message", "There is not plant in the category what you choosed");
+				session.setAttribute("Message", "There is no plant in the category what you choosed");
 				response.sendRedirect("plant.jsp?errorMessage=Can't filter");
 			}
 		} catch (Exception e) {
-			session.setAttribute("Message", "There is not plant in the category what you choosed");
+			session.setAttribute("Message", "There is no plant in the category what you choosed");
 			response.sendRedirect("plant.jsp?errorMessage=Can't filter the plants");
 		}
 	}

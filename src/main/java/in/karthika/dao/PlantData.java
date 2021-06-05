@@ -12,7 +12,7 @@ import in.karthika.exceptions.CannotAddException;
 import in.karthika.exceptions.CannotDeletePlantException;
 import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.model.Plant;
-import in.karthika.util.Connectionutil;
+import in.karthika.util.ConnectionUtil;
 
 public class PlantData {
 
@@ -38,7 +38,7 @@ public class PlantData {
 		
 		try {
 			String url = "select * from plantList";
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);
 		
@@ -58,7 +58,7 @@ public class PlantData {
 		} 
 		
 		finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 		return plantList;
 	}
@@ -79,7 +79,7 @@ public class PlantData {
 		PreparedStatement pst = null;
 		
 		try {
-			con = Connectionutil.getConnection();
+			con = ConnectionUtil.getConnection();
 			String sql = "INSERT INTO plantList(Plant_Name,Cost,Type,Category) values (?,?,?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, plant.getPlantName());
@@ -98,7 +98,7 @@ public class PlantData {
 			e.printStackTrace();
 			throw new RuntimeException("Unable to add Plant");
 		} finally {
-			Connectionutil.close(pst, con);
+			ConnectionUtil.close(pst, con);
 		}
 		
 		return isAdd;
@@ -111,7 +111,7 @@ public class PlantData {
 		PreparedStatement pst = null;
 
 		try {
-			connection = Connectionutil.getConnection();
+			connection = ConnectionUtil.getConnection();
 
 			String sql = "DELETE FROM plantList WHERE Plant_Name=?;";
 			pst = connection.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class PlantData {
 		} catch (SQLException e) {
 			throw new CannotGetCredentialException(e.getMessage());
 		} finally {
-			Connectionutil.close(pst, connection);
+			ConnectionUtil.close(pst, connection);
 		}
 
 		return isDelete;

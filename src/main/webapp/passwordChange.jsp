@@ -14,8 +14,9 @@
 				<caption>Password Change</caption>
 				<tr>
 					<th scope="col">MOBILE NUMBER</th>
-					<td><input type="number" id="phoneNumber" name="phoneNumber" onchange="phonenumber()"
-						placeholder="Enter Mobile Number" required autofocus></td>
+					<td><input type="number" id="phoneNumber" name="phoneNumber"
+						onchange="phonenumber()" placeholder="Enter Mobile Number"
+						required autofocus></td>
 				</tr>
 				<tr>
 					<th scope="col">NEW PASSWORD</th>
@@ -44,16 +45,11 @@
 			function passcheck() {
 				let password1 = document.querySelector("#password1").value;
 				let password2 = document.querySelector("#password2").value;
-				if (password1.length == 8 && password2.length == 8) {
+				if (password1.length == 8 && password2.length == 8
+						&& password1 == password2) {
 
 				} else {
 					alert("Invalid Password");
-					event.preventDefault();
-				}
-				if (password1 == password2) {
-
-				} else {
-					alert("Password and confirm password should be same");
 					event.preventDefault();
 				}
 			}
