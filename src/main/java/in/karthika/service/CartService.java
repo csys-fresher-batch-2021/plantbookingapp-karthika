@@ -104,7 +104,6 @@ public class CartService {
 
 	public static boolean deletePlant(String plantName)  {
 		boolean delete = false;
-		System.out.println(plantName);
 		int i = -1;
 		List<Cart> cartList = CartData.getCart();
 		for (Cart plant : CartData.getCart()) {
@@ -121,7 +120,7 @@ public class CartService {
 	/**
 	 * This method is used to delete all plants in cart
 	 */
-	public static void ClearCart() {
+	public static void clearCart() {
 		List<Cart> cartList = CartData.getCart();
 		cartList.removeAll(cartList);
 		

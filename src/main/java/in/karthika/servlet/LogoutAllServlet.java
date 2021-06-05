@@ -29,7 +29,7 @@ public class LogoutAllServlet extends HttpServlet {
 		session.removeAttribute("ROLE");
 		session.removeAttribute("PHONE_NUMBER");
 		session.removeAttribute("FILTER"); 
-		CartService.ClearCart();
+		CartService.clearCart();
 		response.sendRedirect("Login.jsp");
 	}
 
