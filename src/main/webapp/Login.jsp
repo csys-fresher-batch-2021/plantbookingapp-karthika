@@ -33,20 +33,23 @@
 					function phonenumber1() {
 						let mobileNumber = document.querySelector("#userId").value;
 						if (mobileNumber.trim().length == 10) {
-
 						} else {
 							alert("Incorrect Mobile Number");
 							event.preventDefault();
 						}
 					}
-
 					function passcheck1() {
 						let password = document.querySelector("#password").value;
-						if (password.length == 8) {
-
+						let mobileNumber = document.querySelector("#userId").value;
+						if (password.length == 0 || mobileNumber.length == 0) {
+							alert("Enter all details");
 						} else {
-							alert("Invalid Password");
-							event.preventDefault();
+							if (password.length == 8) {
+
+							} else {
+								alert("Invalid Password");
+								event.preventDefault();
+							}
 						}
 					}
 				</script>
@@ -74,20 +77,26 @@
 							let mobileNumber = document
 									.querySelector("#adminId").value;
 							if (mobileNumber.trim().length == 10) {
-
 							} else {
 								alert("Incorrect Mobile Number");
 								event.preventDefault();
 							}
 						}
-
 						function passcheck2() {
 							let password = document.querySelector("#passcode").value;
-							if (password.trim().length == 8) {
+							let mobileNumber = document
+									.querySelector("#adminId").value;
+							if (password.length == 0
+									|| mobileNumber.length == 0) {
+								alert("Enter all details");
 
 							} else {
-								alert("Invalid Password");
-								event.preventDefault();
+								if (password.length == 8) {
+
+								} else {
+									alert("Invalid Password");
+									event.preventDefault();
+								}
 							}
 						}
 					</script>

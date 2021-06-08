@@ -22,7 +22,7 @@
 		<table class="table table-bordered">
 			<caption>Our Stock</caption>
 			<thead>
-				<tr>
+				<tr >
 					<th scope="col">S.NO</th>
 					<th scope="col">PLANT NAME</th>
 					<th scope="col">PRICE (Rs)</th>

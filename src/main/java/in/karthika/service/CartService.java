@@ -1,5 +1,6 @@
 package in.karthika.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import in.karthika.dao.CartData;
@@ -116,6 +117,22 @@ public class CartService {
 		}
 		return delete;
 	}
+	
+	public static void storeAllOrderPlants(String phoneNumber) throws Exception {
+		String customerId = UserService.getUserId(phoneNumber);
+		LocalDate orderDate=LocalDate.now();
+		List<Cart> orderItems=CartData.getCart();
+		for(Cart cart:orderItems) {
+			String plantName=cart.getPlantName();
+			double cost=cart.getPrice();
+			int quantity=cart.getQuantity();
+			double priceOfaPlant=cart.getAmountForAplant();
+			Cart cartItems=new Cart(customerId,plantName,orderDate,cost,quantity,priceOfaPlant);
+			CartData.save(cartItems);
+		}
+		
+		
+	}
 
 	/**
 	 * This method is used to delete all plants in cart
@@ -124,6 +141,12 @@ public class CartService {
 		List<Cart> cartList = CartData.getCart();
 		cartList.removeAll(cartList);
 		
+	}
+
+	public static List<Cart> getOrderItems(String mobileNumber) throws Exception {
+		String customerId = UserService.getUserId(mobileNumber);
+		List<Cart> orderDetails=CartData.getOrderDetailsByOrderId(customerId);		
+		return orderDetails;
 	}
 
 }

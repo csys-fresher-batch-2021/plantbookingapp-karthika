@@ -87,7 +87,7 @@ public class UserService {
 
 	public static String generateUserId(String phoneNumber, String userName) {
 		String name = userName.substring(0, 4);
-		return name + phoneNumber;
+		return name.concat(phoneNumber);
 	}
 
 	/**
@@ -150,6 +150,25 @@ public class UserService {
 			}
 		}
 		return name;
+	}
+
+	/**
+	 * This method is used to get the customer id by phone number
+	 * 
+	 * @param phoneNumber
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getUserId(String phoneNumber) throws Exception {
+		String userId = null;
+		long mobileNo = Long.parseLong(phoneNumber);
+		for (User user : UserData.userDetails()) {
+			if (user.getPhoneNumber() == mobileNo) {
+				userId = user.getUserId();
+				break;
+			}
+		}
+		return userId;
 	}
 
 	/**

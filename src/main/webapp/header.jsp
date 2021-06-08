@@ -60,7 +60,7 @@ String access = (String) session.getAttribute("FILTER");
       </li>
       <%} else { %>
          <li class="nav-item">
-        <a class="nav-link" href="#">Welcome <%=loggedInUsername %></a>
+        <a class="nav-link" href="userAccount.jsp">Welcome <%=loggedInUsername %></a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="LogoutAllServlet" method="get">Logout</a>
