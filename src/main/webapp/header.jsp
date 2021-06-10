@@ -8,6 +8,7 @@
 <%
 String loggedInUsername = (String)session.getAttribute("LOGGED_IN_USER");
 String access = (String) session.getAttribute("FILTER");
+String role=(String) session.getAttribute("ROLE");
 %>
 <header>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -60,7 +61,11 @@ String access = (String) session.getAttribute("FILTER");
       </li>
       <%} else { %>
          <li class="nav-item">
+         <%if(role=="ADMIN"){ %>
+         <a class="nav-link" href="#">Welcome <%=loggedInUsername %></a>
+         <%}else{ %>
         <a class="nav-link" href="userAccount.jsp">Welcome <%=loggedInUsername %></a>
+        <%} %>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="LogoutAllServlet" method="get">Logout</a>

@@ -8,6 +8,23 @@
 <head>
 <title>BILL</title>
 </head>
+<style>
+tr, td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;  
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+</style>
 <body>
 <%String phoneNumber = (String) session.getAttribute("PHONE_NUMBER"); %>
 	<jsp:include page="header.jsp"></jsp:include>

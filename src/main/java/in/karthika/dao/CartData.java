@@ -58,6 +58,13 @@ public class CartData {
 	public static List<Cart> getCart() {
 		return cartPlants;
 	}
+	
+	public static final String CUSTOMERID="Customer_Id";
+	public static final String ORDERDATE="Order_Date";
+	public static final String PLANTNAME="Plant_Name";
+	public static final String PRICE="Price";
+	public static final String QUANTITY="Quantity";
+	public static final String PRICEPERPLANT="Price_Per_Plant";
 
 	public static void save(Cart cartItems) throws ClassNotFoundException, CannotAddException {
 
@@ -68,6 +75,7 @@ public class CartData {
 			con = ConnectionUtil.getConnection();
 
 			String sql = "insert into cartData(Customer_Id,Order_Date,Plant_Name,Price,Quantity,Price_Per_Plant) values ( ?,?,?,?,?,? )";
+			
 			pst = con.prepareStatement(sql);
 			pst.setString(1, cartItems.getOrderId());
 			pst.setObject(2, cartItems.getOrderDate());
@@ -88,28 +96,28 @@ public class CartData {
 	}
 
 	public static List<Cart> getOrderDetailsByOrderId(String customerId) throws ClassNotFoundException {
-		
+		System.out.println(customerId);
 		List<Cart> orderItems = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement pst = null;
-		
+
 		try {
 			connection = ConnectionUtil.getConnection();
 
-			String url = "select * from cartData where Order_Id = ?";
-			pst = connection.prepareStatement(url);
+			String sql = "select * from cartData where Customer_Id = ?";
+			pst = connection.prepareStatement(sql);
 			pst.setString(1, customerId);
 			
-			ResultSet rs = pst.executeQuery(url);
+			ResultSet rs = pst.executeQuery();
 			
 			
 			while (rs.next()) {
-				String orderId=rs.getString("Customer_Id");
-				LocalDate orderDate=LocalDate.parse(rs.getString("Order_Date"));
-	            String plantName=rs.getString("Plant_Name");
-				double price=rs.getDouble("Price");
-				int quantity=rs.getInt("Quantity");
-				double pricePerPlant=rs.getDouble("Price_Per_Plant");
+				String orderId=rs.getString(CUSTOMERID);
+				LocalDate orderDate=LocalDate.parse(rs.getString(ORDERDATE));
+	            String plantName=rs.getString(PLANTNAME);
+				double price=rs.getDouble(PRICE);
+				int quantity=rs.getInt(QUANTITY);
+				double pricePerPlant=rs.getDouble(PRICEPERPLANT);
 				orderItems.add(new Cart(orderId,plantName,orderDate,price,quantity,pricePerPlant));
 			}
 		}
@@ -117,7 +125,7 @@ public class CartData {
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Invalid Plant Details");
+			throw new RuntimeException("Cannot get the user details");
 		}
 
 		finally {

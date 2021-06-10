@@ -18,7 +18,7 @@ public class Cart {
 	 * @param plantName
 	 * @param orderDate
 	 * @param price
-	 * @param quantity
+	 * @param quantity2
 	 * @param amountForAplant
 	 */
 	public Cart(String orderId, String plantName, LocalDate orderDate, double price, int quantity,

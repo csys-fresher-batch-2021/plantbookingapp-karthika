@@ -6,6 +6,23 @@
 <head>
 <title>CART</title>
 </head>
+<style>
+tr, td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;  
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+</style>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
@@ -45,15 +62,12 @@
 						<form action="AddQuantity">
 							<input type="text" id="quantity" name="quantity"
 								placeholder="Quantity" required autofocus>
-							<button class="btn btn-primary" onclick="quantityCheck()" type="submit">CONFIRM</button>
+							<button class="btn btn-success" onclick="quantityCheck()" type="submit">CONFIRM</button>	</form>
 					</td>
-					<td><a class="btn btn-primary"
+					<td><a class="btn btn-warning"
 						href="DeleteCartPlantServlet?plantName=<%=cart.getPlantName()%>">DELETE</a></td>
 					<%
 					session.setAttribute("plantName", cart.getPlantName());
-					%>
-					</form>
-					<%
 					}
 
 					}
@@ -66,8 +80,8 @@
 		<%
 		if (cartList.size() == j) {
 		%>
-		<a class="btn btn-primary" href="plant.jsp">Want To Buy More
-			Plants</a> <a class="btn btn-primary" href="PlaceOrderServlet">Place
+		<a class="btn btn-info" href="plant.jsp">Want To Buy More
+			Plants</a> <a class="btn btn-success" href="PlaceOrderServlet">Place
 			Order</a>
 		<%
 		} else {
