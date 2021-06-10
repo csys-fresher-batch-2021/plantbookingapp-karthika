@@ -33,6 +33,7 @@ public class GetUserAccountDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String mobileNumber = request.getParameter("phoneNumber");
@@ -42,9 +43,6 @@ public class GetUserAccountDetails extends HttpServlet {
 			Gson gson = new GsonBuilder().setPrettyPrinting()
 					.registerTypeAdapter(LocalDate.class, new DateTimeAdapter())
 					.registerTypeAdapter(LocalDate.class, new DateTimeAdapter()).create();
-
-			System.out.println("I am in servlet");
-			// Gson gson = new Gson();
 
 			String object = gson.toJson(orderItems);
 			PrintWriter out = response.getWriter();

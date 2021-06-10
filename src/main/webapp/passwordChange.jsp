@@ -63,22 +63,22 @@ button:hover {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<h2>
-			<b>WELCOME TO GREENKART</b>
+			<strong>WELCOME TO GREENKART</strong>
 		</h2>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm">
 					<h3>
-						<b>User Login</b>
+						<strong>User Login</strong>
 					</h3>
 					<form action="PasswordChangeServlet">
 						<div class="container">
-							<label><b>MOBILE NUMBER</b></label> <input type="number"
+							<label><strong>MOBILE NUMBER</strong></label> <input type="number"
 								id="phoneNumber" name="phoneNumber" onchange="phonenumber()"
-								placeholder="Enter Mobile Number" required autofocus> <label><b>NEW
-									PASSWORD</b></label> <input type="password" id="password1" name="password1"
-								placeholder="Enter Password" required> <label><b>RE-ENTER
-									NEW PASSWORD</b></label> <input type="password" id="password2"
+								placeholder="Enter Mobile Number" required autofocus> <label><strong>NEW
+									PASSWORD</strong></label> <input type="password" id="password1" name="password1"
+								placeholder="Enter Password" required> <label><strong>RE-ENTER
+									NEW PASSWORD</strong></label> <input type="password" id="password2"
 								name="password2" placeholder="Re-Enter Password" required>
 
 							<button type="submit"
@@ -88,7 +88,7 @@ button:hover {
 					</form>
 				</div>
 				<div class="col-sm"><div class="container">
-				<img src="tree.jpg" width="450" height="450">
+				<img src="tree.jpg" alt="tree"  width="450" height="450">
 				</div></div>
 			</div>
 		</div>

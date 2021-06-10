@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.karthika.exceptions.CannotAddException;
 import in.karthika.model.Cart;
 import in.karthika.util.ConnectionUtil;
 
@@ -58,15 +57,19 @@ public class CartData {
 	public static List<Cart> getCart() {
 		return cartPlants;
 	}
-	
-	public static final String CUSTOMERID="Customer_Id";
-	public static final String ORDERDATE="Order_Date";
-	public static final String PLANTNAME="Plant_Name";
-	public static final String PRICE="Price";
-	public static final String QUANTITY="Quantity";
-	public static final String PRICEPERPLANT="Price_Per_Plant";
 
-	public static void save(Cart cartItems) throws ClassNotFoundException, CannotAddException {
+	public static final String CUSTOMERID = "Customer_Id";
+	public static final String ORDERDATE = "Order_Date";
+	public static final String PLANTNAME = "Plant_Name";
+	public static final String PRICE = "Price";
+	public static final String QUANTITY = "Quantity";
+	public static final String PRICEPERPLANT = "Price_Per_Plant";
+
+	/**
+	 * This method used to save the ordered plants to the database
+	 */
+
+	public static void save(Cart cartItems) throws ClassNotFoundException {
 
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -75,7 +78,7 @@ public class CartData {
 			con = ConnectionUtil.getConnection();
 
 			String sql = "insert into cartData(Customer_Id,Order_Date,Plant_Name,Price,Quantity,Price_Per_Plant) values ( ?,?,?,?,?,? )";
-			
+
 			pst = con.prepareStatement(sql);
 			pst.setString(1, cartItems.getOrderId());
 			pst.setObject(2, cartItems.getOrderDate());
@@ -95,8 +98,15 @@ public class CartData {
 
 	}
 
+	/**
+	 * This method is used to get the ordered plant by customer id
+	 * 
+	 * @param customerId
+	 * @return
+	 * @throws ClassNotFoundException
+	 */
 	public static List<Cart> getOrderDetailsByOrderId(String customerId) throws ClassNotFoundException {
-		System.out.println(customerId);
+		
 		List<Cart> orderItems = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -107,21 +117,19 @@ public class CartData {
 			String sql = "select * from cartData where Customer_Id = ?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, customerId);
-			
+
 			ResultSet rs = pst.executeQuery();
-			
-			
+
 			while (rs.next()) {
-				String orderId=rs.getString(CUSTOMERID);
-				LocalDate orderDate=LocalDate.parse(rs.getString(ORDERDATE));
-	            String plantName=rs.getString(PLANTNAME);
-				double price=rs.getDouble(PRICE);
-				int quantity=rs.getInt(QUANTITY);
-				double pricePerPlant=rs.getDouble(PRICEPERPLANT);
-				orderItems.add(new Cart(orderId,plantName,orderDate,price,quantity,pricePerPlant));
+				String orderId = rs.getString(CUSTOMERID);
+				LocalDate orderDate = LocalDate.parse(rs.getString(ORDERDATE));
+				String plantName = rs.getString(PLANTNAME);
+				double price = rs.getDouble(PRICE);
+				int quantity = rs.getInt(QUANTITY);
+				double pricePerPlant = rs.getDouble(PRICEPERPLANT);
+				orderItems.add(new Cart(orderId, plantName, orderDate, price, quantity, pricePerPlant));
 			}
 		}
-		
 
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -131,7 +139,7 @@ public class CartData {
 		finally {
 			ConnectionUtil.close(pst, connection);
 		}
-		
+
 		return orderItems;
 
 	}

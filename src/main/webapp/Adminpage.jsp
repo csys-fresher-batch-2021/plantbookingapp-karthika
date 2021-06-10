@@ -66,24 +66,24 @@ a:hover {
 				<div class="col-sm">
 					<form>
 						<div class="container">
-							<a class="btn btn-primary buttonstyle" href="addPlant.jsp"><b>ADD
-								PLANT</b></a>
+							<a class="btn btn-primary buttonstyle" href="addPlant.jsp"><strong>ADD
+								PLANT</strong></a>
 								
 							 <a class="btn btn-secondary buttonstyle"
-								href="registeredUser.jsp"><b>DISPLAY ALL USERS</b></a>
+								href="registeredUser.jsp"><strong>DISPLAY ALL USERS</strong></a>
 								
 							 <a
-								class="btn btn-danger buttonstyle" href="plant.jsp"><b>DELETE
-								PLANTS</b></a>
+								class="btn btn-danger buttonstyle" href="plant.jsp"><strong>DELETE
+								PLANTS</strong></a>
 								
 							 <a class="btn btn-success buttonstyle"
-								href="displayAllUsersBillDetails.jsp"><b>VIEW ORDER DETAILS</b></a>
+								href="displayAllUsersBillDetails.jsp"><strong>VIEW ORDER DETAILS</strong></a>
 						</div>
 					</form>
 				</div>
 				<div class="col-sm">
 					<div class="container">
-						<img src="tree2.jpg" width="400" height="400">
+						<img src="tree2.jpg" alt="tree" width="400" height="400">
 					</div>
 				</div>
 			</div>

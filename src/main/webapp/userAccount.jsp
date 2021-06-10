@@ -43,8 +43,8 @@ th {
 		<br />
 		<div class="container">
 			<div class="row">
-				<div class="col divborder"><label><b>NAME : <%=customerName %></b></label></div>
-				<div class="col divborder"><label><b>PHONE NUMBER : <%=phoneNumber %></b></label></div>
+				<div class="col divborder"><label><strong>NAME : <%=customerName %></strong></label></div>
+				<div class="col divborder"><label><strong>PHONE NUMBER : <%=phoneNumber %></strong></label></div>
 			</div>
 		</div><br/>
 

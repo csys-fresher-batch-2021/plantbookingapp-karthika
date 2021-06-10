@@ -61,21 +61,21 @@ button:hover {
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class="container-fluid">
 		<h2>
-			<b>WELCOME TO GREENKART</b>
+			<strong>WELCOME TO GREENKART</strong>
 		</h2>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm">
 					<h3>
-						<b>User Login</b>
+						<strong>User Login</strong>
 					</h3>
 					<form action="LoginUserServlet" method="post">
 						<div class="container">
-							<label><b>MOBILE NUMBER</b></label> <input type="number"
+							<label><strong>MOBILE NUMBER</strong></label> <input type="number"
 								name="userId" id="userId" onchange="phonenumber1()"
 								placeholder="Enter your phone number" required autofocus>
 
-							<label><b>PASSWORD</b></label> <input type="password"
+							<label><strong>PASSWORD</strong></label> <input type="password"
 								name="password" id="password" placeholder="Enter password"
 								required>
 
@@ -116,14 +116,14 @@ button:hover {
 				</div>
 
 				<div class="col-sm">
-					<h3><b>Admin Login</b></h3>
+					<h3><strong>Admin Login</strong></h3>
 					<form action="LoginAdminServlet" method="post">
 						<div class="container">
-							<label><b>MOBILE NUMBER</b></label> <input type="number"
+							<label><strong>MOBILE NUMBER</strong></label> <input type="number"
 								name="adminId" id="adminId" onchange="phonenumber2()"
 								placeholder="Enter your phone number" required autofocus>
 
-							<label><b>PASSWORD</b></label> <input type="password"
+							<label><strong>PASSWORD</strong></label> <input type="password"
 								name="passcode" id="passcode" placeholder="Enter password"
 								required>
 

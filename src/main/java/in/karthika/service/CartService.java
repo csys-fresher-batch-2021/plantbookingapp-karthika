@@ -145,9 +145,7 @@ public class CartService {
 
 	public static List<Cart> getOrderItems(String mobileNumber) throws Exception {
 		String customerId = UserService.getUserId(mobileNumber);
-		System.out.println("service class");
 		List<Cart> orderDetails=CartData.getOrderDetailsByOrderId(customerId);
-		System.out.println(orderDetails);
 		return orderDetails;
 	}
 

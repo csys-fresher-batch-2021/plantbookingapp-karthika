@@ -70,19 +70,19 @@ button:hover {
 			<div class="row">
 				<div class="col-sm">
 					<h3>
-						<b>Add Plant</b>
+						<strong>Add Plant</strong>
 					</h3>
 					<form action="PlantAddServlet" method="post">
 						<div class="container">
-							<label><b>Plant Name</b></label><input type="text"
+							<label><strong>Plant Name</strong></label><input type="text"
 								name="plantname" id="plantname" onchange="plantNameValidate()"
-								required autofocus> <label><b>Price</b></label><input
+								required autofocus> <label><strong>Price</strong></label><input
 								type="text" name="price" id="price" onchange="priceCheck()"
-								required> <label><b>Plant Type</b></label> <select
+								required> <label><strong>Plant Type</strong></label> <select
 								name="type" id="type" class="selection">
 								<option value="tree">Tree</option>
 								<option value="plant">Plant</option>
-							</select> <label><b>Plant Category</b></label> <select name="category"
+							</select> <label><strong>Plant Category</strong></label> <select name="category"
 								id="category" class="selection">
 								<option value="fruit">Fruit</option>
 								<option value="vegetable">Vegetable</option>
@@ -98,7 +98,7 @@ button:hover {
 						</div>
 					<div class="col-sm">
 						<div class="container">
-						<img src="leaf.jpg" width="500" height="500">
+						<img src="leaf.jpg" alt="leaf"  width="500" height="500">
 						</div>
 				
 

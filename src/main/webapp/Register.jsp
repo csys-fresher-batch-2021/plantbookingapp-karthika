@@ -61,26 +61,26 @@ button:hover {
 	<main class="container-fluid">
 
 		<h2>
-			<b>WELCOME TO GREENKART</b>
+			<strong>WELCOME TO GREENKART</strong>
 		</h2>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm">
 					<h3>
-						<b>Register</b>
+						<strong>Register</strong>
 					</h3>
 					<form action="UserRegisterServlet" method="post">
 
 						<div class="container">
-							<label><b>NAME</b></label> <input type="text" name="userName"
+							<label><strong>NAME</strong></label> <input type="text" name="userName"
 								id="userName" onchange="nameValidate()"
-								placeholder="Enter user name" required autofocus> <label><b>PHONE
-									NUMBER</b></label> <input type="number" name="mobileNumber"
+								placeholder="Enter user name" required autofocus> <label><strong>PHONE
+									NUMBER</strong></label> <input type="number" name="mobileNumber"
 								id="mobileNumber" onchange="phonenumber()"
-								placeholder="Enter your phone number" required> <label><b>PASSWORD</b></label>
+								placeholder="Enter your phone number" required> <label><strong>PASSWORD</strong></label>
 							<input type="password" name="password1" id="password1"
-								placeholder="Enter password" required> <label><b>RE-
-									ENTER PASSWORD</b></label><input type="password" name="password2"
+								placeholder="Enter password" required> <label><strong>RE-
+									ENTER PASSWORD</strong></label><input type="password" name="password2"
 								id="password2" placeholder="Re-Enter password" required>
 
 							<button type="submit" onclick="checkall()">SUBMIT</button>
@@ -90,7 +90,7 @@ button:hover {
 				</div>
 				<div class="col-sm">
 					<div class="container">
-						<img src="plant.jpg" width="500" height="500">
+						<img src="plant.jpg" alt="plant"  width="500" height="500">
 					</div>
 				</div>
 			</div>
