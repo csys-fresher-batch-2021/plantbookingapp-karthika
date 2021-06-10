@@ -46,7 +46,7 @@ public class GetUserAccountDetails extends HttpServlet {
 
 			String object = gson.toJson(orderItems);
 			PrintWriter out = response.getWriter();
-			System.out.println(object);
+			
 			out.println(object);
 			out.flush();
 		} catch (Exception e) {

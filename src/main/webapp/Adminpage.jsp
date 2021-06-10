@@ -59,7 +59,7 @@ a:hover {
 		<br />
 		<br />
 		<h3>
-			<b>WELCOME TO GREENKART</b>
+			<strong>WELCOME TO GREENKART</strong>
 		</h3>
 		<div class="container">
 			<div class="row">
