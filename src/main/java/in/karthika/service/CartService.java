@@ -1,5 +1,6 @@
 package in.karthika.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import in.karthika.dao.CartData;
@@ -102,7 +103,7 @@ public class CartService {
 	 * @throws CannotDeletePlantException
 	 */
 
-	public static boolean deletePlant(String plantName)  {
+	public static boolean deletePlant(String plantName) {
 		boolean delete = false;
 		int i = -1;
 		List<Cart> cartList = CartData.getCart();
@@ -112,9 +113,30 @@ public class CartService {
 				cartList.remove(i);
 				delete = true;
 				break;
-			} 
+			}
 		}
 		return delete;
+	}
+
+	/**
+	 * This method is used to store all the purchased plant details
+	 * 
+	 * @param phoneNumber
+	 * @throws Exception
+	 */
+	public static void storeAllOrderPlants(String phoneNumber) throws Exception {
+		String customerId = UserService.getUserId(phoneNumber);
+		LocalDate orderDate = LocalDate.now();
+		List<Cart> orderItems = CartData.getCart();
+		for (Cart cart : orderItems) {
+			String plantName = cart.getPlantName();
+			double cost = cart.getPrice();
+			int quantity = cart.getQuantity();
+			double priceOfaPlant = cart.getAmountForAplant();
+			Cart cartItems = new Cart(customerId, plantName, orderDate, cost, quantity, priceOfaPlant);
+			CartData.save(cartItems);
+		}
+
 	}
 
 	/**
@@ -123,7 +145,20 @@ public class CartService {
 	public static void clearCart() {
 		List<Cart> cartList = CartData.getCart();
 		cartList.removeAll(cartList);
-		
+
+	}
+
+	/**
+	 * This method id used to get the ordered items
+	 * 
+	 * @param mobileNumber
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<Cart> getOrderItems(String mobileNumber) throws Exception {
+		String customerId = UserService.getUserId(mobileNumber);
+		return CartData.getOrderDetailsByOrderId(customerId);
+
 	}
 
 }

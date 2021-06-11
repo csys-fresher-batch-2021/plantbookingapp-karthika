@@ -14,7 +14,6 @@ import in.karthika.exceptions.CannotGetCredentialException;
 import in.karthika.model.User;
 import in.karthika.util.ConnectionUtil;
 
-
 public class UserData {
 
 	private UserData() {
@@ -23,13 +22,19 @@ public class UserData {
 		 */
 	}
 
+
+	public static final String USERID = "User_Id";
+	public static final String USERNAME = "User_Name";
+	public static final String CONTACTNUMBER = "Contact_Number";
+	public static final String PASSWORD = "Password";
+
 	/**
 	 * This method is used to store all user details insert the table userList
 	 * 
 	 * @param user
 	 * @throws Exception
 	 */
-
+	
 	public static boolean save(User user) throws Exception {
 
 		boolean isAdd = false;
@@ -79,15 +84,15 @@ public class UserData {
 		try {
 			con = ConnectionUtil.getConnection();
 
-			String url = "select * from userList";
+			String url = "select User_Id, User_Name, Contact_Number, Password  from userList";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);
 
 			while (rs.next()) {
-				String userId = rs.getString("User_Id");
-				String userName = rs.getString("User_Name");
-				long contactNumber =  rs.getLong("Contact_Number");
-				String password = rs.getString("Password");
+				String userId = rs.getString(USERID);
+				String userName = rs.getString(USERNAME);
+				long contactNumber = rs.getLong(CONTACTNUMBER);
+				String password = rs.getString(PASSWORD);
 				userList.add(new User(userId, userName, contactNumber, password));
 			}
 		} catch (SQLException e) {

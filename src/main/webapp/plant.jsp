@@ -6,6 +6,23 @@
 <head>
 <title>Plants</title>
 </head>
+<style>
+tr, td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;  
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+</style>
 <body>
 <%session.removeAttribute("FILTER"); %>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -22,7 +39,7 @@
 		<table class="table table-bordered">
 			<caption>Our Stock</caption>
 			<thead>
-				<tr>
+				<tr >
 					<th scope="col">S.NO</th>
 					<th scope="col">PLANT NAME</th>
 					<th scope="col">PRICE (Rs)</th>
@@ -44,13 +61,13 @@
 					if (role != null) {
 						if (role.equalsIgnoreCase("ADMIN")) {
 					%>
-					<td><a class="btn btn-primary"
+					<td><a class="btn btn-danger"
 						href="DeletePlantServlet?plantName=<%=plant.getPlantName()%>">DELETE</a></td>
 					<%
 					} else if (role.equalsIgnoreCase("USER")) {
 					%>
 
-					<td><a class="btn btn-primary"
+					<td><a class="btn btn-success"
 						href="AddCartServlet?plantName=<%=plant.getPlantName()%>">ADD
 							TO CART</a></td>
 					<%

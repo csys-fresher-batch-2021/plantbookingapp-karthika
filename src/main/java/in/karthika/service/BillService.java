@@ -72,7 +72,7 @@ public class BillService {
 	 */
 	private static String getOrderId(String userName, String phoneNumber) {
 		String name = userName.substring(0, 4);
-		return name + phoneNumber;
+		return name.concat(phoneNumber); 
 	}
 
 }
