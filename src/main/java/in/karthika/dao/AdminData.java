@@ -33,7 +33,7 @@ public class AdminData {
 		PreparedStatement pst = null;
 
 		try {
-			String url = "select * from adminlist";
+			String url = "select Admin_Name, Contact_Number, Password from adminlist";
 			con = ConnectionUtil.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);

@@ -62,8 +62,9 @@ th {
 			<tbody>
 				<%
 				for(Bill totalBill:BillData.billDetails()){
-					String mobileNumber=String.valueOf(totalBill.getMobileNumber());
-					if(phoneNumber.equalsIgnoreCase(mobileNumber) && phoneNumber!=null){%>
+					if(phoneNumber!=null){
+					long number=Long.parseLong(phoneNumber);
+					if(number==totalBill.getMobileNumber()){%>
 				<tr>
 					<th scope="col">ORDER ID</th>
 					<td><%=totalBill.getOrderId()%></td>
@@ -96,7 +97,7 @@ th {
 					<th scope="col">FINAL BILL</th>
 					<td>RS.<%=totalBill.getFinalBill() %></td>
 				</tr>
-				<% break;}} %>
+				<% break;}}} %>
 			</tbody>
 		</table>
 	</main>

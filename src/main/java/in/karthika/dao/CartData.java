@@ -114,7 +114,7 @@ public class CartData {
 		try {
 			connection = ConnectionUtil.getConnection();
 
-			String sql = "select * from cartData where Customer_Id = ?";
+			String sql = "select Customer_Id,Order_Date,Plant_Name,Price,Quantity,Price_Per_Plant from cartData where Customer_Id = ?";
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, customerId);
 

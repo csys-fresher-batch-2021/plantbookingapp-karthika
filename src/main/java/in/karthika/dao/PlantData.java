@@ -37,7 +37,7 @@ public class PlantData {
 		PreparedStatement pst = null;
 		
 		try {
-			String url = "select * from plantList";
+			String url = "select Plant_Name,Cost,Type,Category from plantList";
 			con = ConnectionUtil.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);

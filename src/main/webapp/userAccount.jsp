@@ -56,7 +56,7 @@ th {
 			<a href="plant.jsp" class="btn btn-secondary" 
 			class="form-control form-control-sm">BACK</a> 
 			
-			<p id="mesage" > </p>
+			<label id="mesage" > </label>
 			
 			<input
 			type="hidden" id="mobileNumber" name="mobileNumber"
@@ -75,7 +75,6 @@ th {
 				fetch(url).then(res=> res.json()).then(res=>{
 					let data = res;
 					console.log(res);
-					console.log(res[0].orderId);
 					displayAccountDetails(data);
 				});
 			
@@ -84,10 +83,11 @@ th {
 			
 			function displayAccountDetails(data){
 				if(data.length==0){
-					document.getElementById("mesage").innerHTML="YOU ARE NOT PLACED ANY ORDERS";
+					let msg="YOU ARE NOT PLACED ANY ORDERS";
+					document.getElementById("mesage").innerHTML= msg;
 				}
 				else{
-				var tableData = '<thead><tr><th>SNO</th><th>PLANT NAME</th><th>ORDER DATE</th><th>PRICE</th><th>QUANTITY</th><th>TOTAL PRICE</th><th>STATUS</th></tr></thead>'
+				var tableData = '<thead><tr><th>SNO</th><th>PLANT NAME</th><th>ORDER DATE</th><th>PRICE</th><th>QUANTITY</th><th>TOTAL PRICE</th></tr></thead>'
 					tableData+= '<tbody>'
 				    for(i = 0;i < data.length; i++){
 				    	tableData+= '<tr>';

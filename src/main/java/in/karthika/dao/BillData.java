@@ -91,7 +91,7 @@ public class BillData {
 		try {
 			con = ConnectionUtil.getConnection();
 			
-			String url = "select * from billDetails";
+			String url = "select Order_Id, Customer_Name, Contact_Number, Order_Date, Delivery_Date, Bill, GST,Final_Bill from billDetails";
 			
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(url);
