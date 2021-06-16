@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <head>
 <title>Plant</title>
 </head>
@@ -93,11 +94,11 @@ th {
 				    	tableData+= '<tr>';
 				    	tableData+= '<td>' + (parseInt(i)+1) + '</td>';	
 				    	tableData+= '<td>' +  data[i].plantName + '</td>';
-				    	tableData+= '<td>' +  data[i].orderDate + '</td>';
+				    	tableData+= '<td>' +  moment(data[i].orderDate).format('DD-MM-YYYY'); + '</td>';
 				    	tableData+= '<td>' +  data[i].price     + '</td>';
 				    	tableData+= '<td>' +  data[i].quantity  + '</td>';
 				    	tableData+= '<td>' +  data[i].amountForAplant + '</td>';
-				    	tableData+= '</tr>';
+				    	tableData+= '</tr>';   
 				    }
 					tableData+='</tbody>';
 				    document.getElementById("orderTable").innerHTML = tableData;			

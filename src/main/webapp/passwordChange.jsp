@@ -83,7 +83,7 @@ button:hover {
 
 							<button type="submit"
 								onclick="checkall()">SUBMIT</button>
-							<br /> <a href="login.jsp">Back</a>
+							<br /> <a href="Login.jsp">Back</a>
 						</div>
 					</form>
 				</div>
